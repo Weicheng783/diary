@@ -1,0 +1,5 @@
+SELECT * FROM location.register INTO OUTFILE '\tmp\myExportFile.csv'
+FIELDS ENCLOSED BY '"'
+TERMINATED BY ';'
+ESCAPED BY '"'
+LINES TERMINATED BY '\r\n';
