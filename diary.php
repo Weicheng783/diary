@@ -36,16 +36,25 @@
                         <p>Password: <input type="password" name="diary_password" class="input_font"></input></p>
                         <button type="submit" class="header_button" onclick="">Login</button>
                       </form>';
-                ech '</div>';
-                // try{
+                echo '</div>';
+                try{
                     $user = "weicheng";
                     $password = "awc020826";
 
                     $pdo = new pdo('mysql:host=150.230.127.102; dbname=diary', $user, $password);
                     echo "<h3 style='text-align:center; color:green;'>Database Status Normal (3306). 数据库正常.</h3>";
-                // }catch(PDOException $e){
-                //     echo "<h3 style='text-align:center; color:red;'>Database Disconnected (3306). 数据库目前无法正常连接.</h3>";
-                // }
+                }catch(PDOException $e){
+                    echo "<h3 style='text-align:center; color:red;'>Database Disconnected (3306). 数据库目前无法正常连接.</h3>";
+                    try{
+                        $user = "weicheng";
+                        $password = "awc020826";
+    
+                        $pdo = new pdo('mysql:host=localhost; dbname=diary', $user, $password);
+                        echo "<h3 style='text-align:center; color:green;'>Database Status Normal (3306). 数据库正常.</h3>";
+                    }catch(PDOException $e){
+                        echo "<h3 style='text-align:center; color:red;'>Database Disconnected (3306). 数据库目前无法正常连接.</h3>";
+                    }
+                }
             }else{
 
                 echo '<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">';
