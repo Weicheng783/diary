@@ -1,6 +1,9 @@
 <!-- Connection to DB -->
 <?php
     // header("Content-type:text/html;charset=utf-8");
+    $user="weicheng";
+    $password='awc020826';
+    $dsn="mysql:host=localhost";
     try
     {
         // Input Authentication
@@ -33,10 +36,9 @@
         }
 
         // Data Base Preparatory Work
-        $dsn="mysql:host=150.230.127.102";
-        $user="weicheng";
-        $password='awc020826';
-        $pdo=new PDO($dsn,$user,$password);
+
+
+        $pdo=new PDO($GLOBALS['dsn'],$GLOBALS['user'], $GLOBALS['password']);
         $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
         // echo "<h3 style='text-align:center; color:green;'>Database Connected, Entering Login/Registration Phase. You will be redirected to the login page once confirmed.</h3>";
 
@@ -44,7 +46,7 @@
             $sql = "CREATE DATABASE IF NOT EXISTS diary";
             $pdo->query($sql);
 
-            $pdo = new pdo('mysql:host=150.230.127.102; dbname=diary', $user, $password);
+            $pdo = new pdo('mysql:host=localhost; dbname=diary', $user, $password);
             $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
             // echo "<h3 style='text-align:center; color:green;'>Database Connected.</h3>";
 
@@ -104,10 +106,9 @@
         $login_pre_password = $login_passwd;
 
         // Data Base Preparatory Work
-        $dsn="mysql:host=150.230.127.102";
-        $user = "weicheng";
-        $password = "awc020826";
-        $pdo = new pdo('mysql:host=150.230.127.102; dbname=diary', $user, $password);
+        $dsn="mysql:host=localhost";
+
+        $pdo = new pdo('mysql:host=localhost; dbname=diary', $GLOBALS['user'], $GLOBALS['password']);
         $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     
         try{

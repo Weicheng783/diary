@@ -25,6 +25,9 @@
               <p class="narrator"><button type="submit" class="header_button" onclick="">Go Back to Quiz page</button></p>
             </form> -->
     <?php
+        $user = "weicheng";
+        $password = "awc020826";
+
         header("Content-Type: text/html; charset=utf-8");
             if (!isset($_COOKIE['diary_name'])){
                 echo '<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">';
@@ -38,22 +41,10 @@
                       </form>';
                 echo '</div>';
                 try{
-                    $user = "weicheng";
-                    $password = "awc020826";
-
-                    $pdo = new pdo('mysql:host=150.230.127.102; dbname=diary', $user, $password);
+                    $pdo = new pdo('mysql:host=localhost; dbname=diary', $GLOBALS['user'], $GLOBALS['password']);
                     echo "<h3 style='text-align:center; color:green;'>Database Status Normal (3306). 数据库正常.</h3>";
                 }catch(PDOException $e){
                     echo "<h3 style='text-align:center; color:red;'>Database Disconnected (3306). 数据库目前无法正常连接.</h3>";
-                    try{
-                        $user = "weicheng";
-                        $password = "awc020826";
-    
-                        $pdo = new pdo('mysql:host=localhost; dbname=diary', $user, $password);
-                        echo "<h3 style='text-align:center; color:green;'>Database Status Normal (3306). 数据库正常.</h3>";
-                    }catch(PDOException $e){
-                        echo "<h3 style='text-align:center; color:red;'>Database Disconnected (3306). 数据库目前无法正常连接.</h3>";
-                    }
                 }
             }else{
 
@@ -90,10 +81,8 @@
                 echo "<hr />";
 
                 try{
-                    $user = "weicheng";
-                    $password = "awc020826";
 
-                    $pdo = new pdo('mysql:host=150.230.127.102; dbname=diary', $user, $password);
+                    $pdo = new pdo('mysql:host=localhost; dbname=diary', $GLOBALS['user'], $GLOBALS['password']);
                     $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
                     $sql = 'SELECT * FROM `temporaryWork` ORDER BY `time` DESC LIMIT 0,1';
@@ -160,10 +149,8 @@
 
                 // We fetch data from Data Base
                 try{
-                    $user = "weicheng";
-                    $password = "awc020826";
 
-                    $pdo = new pdo('mysql:host=150.230.127.102; dbname=diary', $user, $password);
+                    $pdo = new pdo('mysql:host=localhost; dbname=diary', $GLOBALS['user'], $GLOBALS['password']);
                     $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
                     // Last Registered diary First

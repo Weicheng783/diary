@@ -7,7 +7,7 @@ if (!isset($_COOKIE['diary_name'])){
 }
 
 try{
-    $dsn="mysql:host=150.230.127.102; dbname=diary";
+    $dsn="mysql:host=localhost; dbname=diary";
     $user="weicheng";
     $password='awc020826';
     $pdo=new PDO($dsn,$user,$password);
