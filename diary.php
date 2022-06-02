@@ -35,9 +35,9 @@
                 echo "<p><strong>日记中心认证系统--赶紧登录鸭。</strong></p>";
                 // echo "<p>在下方输入授权用户名和密码，并点击提交:</p>";
                 echo '<form action="diary_login.php" method="post" style="display:center;">
-                        <p>Diary Keeper: <input type="input" name="diary_name" class="input_font"></input></p>
-                        <p>Password: <input type="password" name="diary_password" class="input_font"></input></p>
-                        <button type="submit" class="header_button" onclick="">Login</button>
+                        <p>日记记录员 Diary Keeper: <input type="input" name="diary_name" class="input_font"></input></p>
+                        <p>密钥 Password: <input type="password" name="diary_password" class="input_font"></input></p>
+                        <button type="submit" class="header_button" onclick="">Login/登入</button>
                       </form>';
                 echo '</div>';
                 try{
