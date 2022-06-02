@@ -36,10 +36,10 @@
                         <p>Password: <input type="password" name="diary_password" class="input_font"></input></p>
                         <button type="submit" class="header_button" onclick="">Login</button>
                       </form>';
-                echo '</div>';
+                ech '</div>';
                 // try{
                     $user = "weicheng";
-                    $password = "awc02082";
+                    $password = "awc020826";
 
                     $pdo = new pdo('mysql:host=150.230.127.102; dbname=diary', $user, $password);
                     echo "<h3 style='text-align:center; color:green;'>Database Status Normal (3306). 数据库正常.</h3>";
