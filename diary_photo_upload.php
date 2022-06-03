@@ -59,7 +59,7 @@ if (!isset($_COOKIE['diary_name'])){
 
         if (!in_array($_FILES["uploads"]["type"][$key], $tp)) {
             echo "<script language='javascript'>";
-            echo "alert(\"文件类型错误!\");";
+            echo "alert(\"文件类型错误。服务器不允许你上传为 ".$_FILES["uploads"]["type"][$key]." 的文件，请重试。\");";
             echo "</script>";
             echo "<script>location.href='diary.php';</script>";
             exit;
