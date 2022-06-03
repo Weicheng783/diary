@@ -256,7 +256,7 @@
                                     for($j=0; $j<$row_count1; $j++){
                                         if(substr($rows1[$j]['address'], -3, -1) != "mp4" && substr($rows1[$j]['address'], -3, -1) != "avi" && substr($rows1[$j]['address'], -3, -1) != "ogg" && substr($rows1[$j]['address'], -3, -1) != "mov"){
                                             // We can show pictures then
-                                            echo '<img src="'.$rows1[$j]['address'].'" alt="'.$rows1[$j]['address'].'" width="200" height="200" style="border-radius:5px; margin:2px; " id="'.$rows1[$j]['diary_id'].'_'.$rows1[$j]['source_id'].'"></img>';
+                                            echo '<img src="'.$rows1[$j]['address'].'" alt="'.$rows1[$j]['address'].'" width="200" height="200" style="border-radius:5px; margin:2px; " id="'.$rows1[$j]['diary_id'].'_'.$rows1[$j]['source_id'].'" tabindex="0"></img>';
                                             echo '<script>
                                                     document.getElementById("'.$rows1[$j]['diary_id'].'_'.$rows1[$j]['source_id'].'").onclick = function(){
                                                         document.getElementById("'.$rows1[$j]['diary_id'].'_'.$rows1[$j]['source_id'].'").style.width = 200; 
