@@ -157,8 +157,14 @@
                             // We can show pictures then
                             echo '<img src="'.$rows[$i]['address'].'" alt="'.$rows[$i]['address'].'" width="200" height="200" style="border-radius:5px; " id="'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'"></img>';
                             echo '<script>
+                                    document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").onclick = function(){
+                                        document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.width = 200; 
+                                        document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.height = 200; 
+                                    }
+
                                     document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").ondblclick = function(){
-                                        console.log("good to see you then");
+                                        document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.width = auto; 
+                                        document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.height = auto; 
                                     }
                                 </script>';
                         }else{
