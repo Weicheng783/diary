@@ -28,10 +28,12 @@
     $arr = array();   //定义一个数组存放上传图片的名称方便你以后会用的。
     $count = 0;
     if (!file_exists($dest_folder)) {
-        mkdir($dest_folder, 700); // 创建文件夹，并给予最高权限
+        if(!mkdir($dest_folder, 700)){
+            echo "dest_folder not created. please check.";
+        } // 创建文件夹，并给予最高权限
     }
 
-   $tp = array("image/bmp", "image/jpg", "image/gif", "image/pjpeg", "image/jpeg", "image/png", "application/pdf",'application/msword','application/vnd.openxmlformats-officedocument.presentationml.presentation');    //检查上传文件是否在允许上传的类型
+   $tp = array("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "image/bmp", "image/jpg", "image/gif", "image/pjpeg", "image/jpeg", "image/png", "application/pdf",'application/msword','application/vnd.openxmlformats-officedocument.presentationml.presentation');    //检查上传文件是否在允许上传的类型
 
     echo "<pre>";
     print_r($_FILES["uploads"]);
@@ -53,7 +55,7 @@
             $a = explode(".", $_FILES["uploads"]["name"][$key]);  //截取文件名和后缀
             // $prename = substr($a[0],10);   //如果你到底的图片名称不是你所要的你可以用截取字符得到
             $prename = $a[0];
-            $name = date('YmdHis') . mt_rand(100, 999) . mt_rand(100, 999) . mt_rand(100, 999) . mt_rand(100, 999) . mt_rand(100, 999). mt_rand(100, 999) . mt_rand(100, 999) . mt_rand(100, 999) . "." . $a[1];  // 文件的重命名 （日期+随机数+后缀）
+            $name = date('YmdHis') . mt_rand(100, 999) . mt_rand(100, 999) . mt_rand(100, 999) . mt_rand(100, 999) . mt_rand(100, 999). mt_rand(100, 999) . mt_rand(100, 999) . mt_rand(100, 999) . "." . strtolower($a[1]);  // 文件的重命名 （日期+随机数+后缀）
             $uploadfile = $dest_folder . $name;     // 文件的路径
             move_uploaded_file($tmp_name, $uploadfile);
             $arr[$count] = $uploadfile;
