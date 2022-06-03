@@ -179,7 +179,7 @@
 
                         for($i = 0; $i < $row_count; $i++){
                             if($rows[$i]['status'] != "removed" && $rows[$i]['status'] != "deleted" && $rows[$i]['status'] != "hide"){
-                                echo '<hr /><p class="narrator" style="font-size: large; text-align: center;">' . $rows[$i]['time'] . " 计数 " . $rows[$i]['diary_id'] . " <strong style='color=purple'>状态标志: [" . $rows[$i]['status'] . ']</strong></p>';
+                                echo '<hr /><p class="narrator" style="font-size: large; text-align: center;">' . $rows[$i]['time'] . " 总第 " . $rows[$i]['diary_id'] . " 条 <strong style='color=purple'>状态标志: [" . $rows[$i]['status'] . ']</strong></p>';
                                 echo '<p class="narrator" style="text-align: center;"><textarea readonly="readonly" style="width:80%; text-align:left; font-size: 18px;" name="content" rows="15" placeholder="#说说你的日常叭" class="input_font">'. $rows[$i]['content'] .'</textarea></p>';
                             }
                             // echo "<script>
