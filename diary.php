@@ -246,10 +246,9 @@
                                 <input type="submit" name="submit" value="取消连接(数据库条目删除)" />';
                                 echo '</form>';
 
-                                $ii = $i + 1;
 
                                 // BEGIN: PICTURE SHOWING
-                                $sql = 'SELECT * FROM `gallery` WHERE `diary_id` = "'.$ii.'"';
+                                $sql = 'SELECT * FROM `gallery` WHERE `diary_id` = "'.$rows[$i]['diary_id'].'"';
                                 $stmt = $pdo->query($sql);
                                 $row_count1 = $stmt->rowCount();
                                 $rows1 = $stmt->fetchAll();
