@@ -116,6 +116,14 @@
                 <textarea style="display:none; width:0%; height:0%; text-align:left; font-size: 0px;" name="content" rows="0" placeholder="#说说你的日常叭" class="input_font" onkeyup="saveWork()" id="work1">'.$work.'</textarea>
                 </form>';
 
+                $sql = 'SELECT * FROM `diary` ORDER BY `time` DESC';
+
+                $stmt = $pdo->query($sql);
+                $row_count = $stmt->rowCount();
+                $row_count += 1;
+
+                echo '<p class="narrator" style="font-size: large; text-align: center; color: purple">当前是总第 '.$row_count.' 条记录.</p>';
+
                 echo '<form action="diary_post.php" method="post" style="display:center; text-align:center;" id="date">
                         <button type="submit" class="header_button" onclick="" style="text-align:flex;" form="savework">保存</button>
                         <p><textarea style="width:80%; text-align:left; font-size: 20px;" name="content" rows="15" placeholder="#说说你的日常叭" class="input_font" onkeyup="saveWork()" id="work">'.$work.'</textarea></p>
