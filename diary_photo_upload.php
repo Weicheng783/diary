@@ -48,6 +48,9 @@ if (!isset($_COOKIE['diary_name'])){
         $pdo=new PDO($dsn,$user,$password);
         $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
+        $sql = "SET FOREIGN_KEY_CHECKS = 0;";
+        $pdo->query($sql);
+
     }catch(PDOException $e){
         echo "<script>alert('服务器连不上.');location.href='diary.php';</script>";
     }
@@ -97,10 +100,10 @@ if (!isset($_COOKIE['diary_name'])){
             $count++;
         }
     }
-    echo "总共" . $count . "文件";
-    // echo "<script>alert('数据插入成功.');location.href='diary.php';</script>";
-    echo "数据插入和上传成功！";
-    echo "<a href='diary.php'><button value='返回'></button></a>";
+    echo "总共" . $count . "文件;";
+    echo "<script>alert('总共 ".$count." 个文件 插入和上传成功.');location.href='diary.php';</script>";
+    // echo "数据插入和上传成功！";
+    // echo "<a href='diary.php'><button></button></a>";
 ?>
 
 
