@@ -157,7 +157,7 @@
                             // We can show pictures then
                             echo '<img src="'.$rows[$i]['address'].'" alt="'.$rows[$i]['address'].'" width="500" height="500"></img>';
                         }else{
-                            echo '<video width="500" height="500" controls>';
+                            echo '<video width="500" height="auto" controls>';
                             //width="320" height="240"
                             echo '<source src="'.$rows[$i]['address'].'" type="video/mp4" >';
                             echo 'Your browser does not support the video tag.</video>';
