@@ -123,6 +123,12 @@
                 $count = $rows[0]['diary_id'];
                 $count += 1;
 
+                $sql = 'SELECT * FROM `gallery`';
+
+                $stmt = $pdo->query($sql);
+                $count_gallery = $stmt->rowCount();
+                $count_gallery += 1;
+
 
                 echo '<p class="narrator" style="font-size: large; text-align: center; color: purple">当前是总第 '.$count.' 条记录.</p>';
 
@@ -134,9 +140,11 @@
                       </form>';
                 
                 echo '<form action="diary_photo_upload.php" name="form" method="post" enctype="multipart/form-data" style="font-size: large; text-align: center; color: purple">  
-                        图片上传:<input type="file" multiple name="uploads[]" />
-                        <input type="submit" name="submit" value="上传" />
-                        </form>';
+                        图片上传: <input type="file" multiple name="uploads[]" />
+                        <input type="submit" name="submit" value="上传" />';
+                echo '<input type="hidden" name="diary_id" value="'.$count.'" class="input_font">';
+                echo '<input type="hidden" name="source_id" value="'.$count_gallery.'" class="input_font">';
+                echo '</form>';
 
                 echo "<hr />";
 

@@ -1,5 +1,5 @@
 <?php
-
+header("Content-type:text/html;charset=utf-8");
 // $file = $_FILES['file'];
 // $name = $file['name'];
 // $type = strtolower(substr($name,strrpos($name,'.')+1)); 
@@ -20,9 +20,10 @@
 //     echo "Failed!";
 // }
 
-?>
-
-<?php
+if (!isset($_COOKIE['diary_name'])){
+    echo "<script>location.href='diary.php';</script>";
+    exit(0);
+}
 
     $dest_folder = "/home/ubuntu/gallery/";   //上传图片保存的路径 图片放在跟你upload.php同级的picture文件夹里
     $arr = array();   //定义一个数组存放上传图片的名称方便你以后会用的。
@@ -30,6 +31,8 @@
     if (!file_exists($dest_folder)) {
         if(!mkdir($dest_folder, 0777, true)){
             echo "dest_folder not created. please check.";
+            echo "And do not forget to issue: sudo chmod -R 777 gallery.";
+            echo "And do softlink to allow external access.";
         } // 创建文件夹，并给予最高权限
     }
 
@@ -37,6 +40,17 @@
 
     echo "<pre>";
     print_r($_FILES["uploads"]);
+
+    try{
+        $dsn="mysql:host=localhost; dbname=diary";
+        $user="weicheng";
+        $password='awc020826';
+        $pdo=new PDO($dsn,$user,$password);
+        $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+
+    }catch(PDOException $e){
+        echo "<script>alert('服务器连不上.');location.href='diary.php';</script>";
+    }
 
     foreach ($_FILES["uploads"]["error"] as $key => $error) {
         
@@ -47,6 +61,7 @@
             echo "<script language='javascript'>";
             echo "alert(\"文件类型错误!\");";
             echo "</script>";
+            echo "<script>location.href='diary.php';</script>";
             exit;
         }
 
@@ -57,11 +72,38 @@
             $prename = $a[0];
             $name = date('YmdHis') . mt_rand(100, 999) . mt_rand(100, 999) . mt_rand(100, 999) . mt_rand(100, 999) . mt_rand(100, 999). mt_rand(100, 999) . mt_rand(100, 999) . mt_rand(100, 999) . "." . strtolower($a[1]);  // 文件的重命名 （日期+随机数+后缀）
             $uploadfile = $dest_folder . $name;     // 文件的路径
-            move_uploaded_file($tmp_name, $uploadfile);
+            if(!move_uploaded_file($tmp_name, $uploadfile)){
+                echo "<script language='javascript'>";
+                echo "alert(\"文件上传途中出现错误或漏传，请重试!\");";
+                echo "</script>";
+                echo "<script>location.href='diary.php';</script>";
+                exit(0);
+            }
+
+            try{
+                $diary_id = $_REQUEST['diary_id'];
+                $source_id = $_REQUEST['source_id'];
+
+                $source_id += $key;
+            
+                $sql = "INSERT INTO `gallery` (`diary_id`, `source_id`, `address`) VALUES ('".$diary_id."', '".$source_id."', '".$uploadfile."');";
+                $pdo->query($sql);
+            
+            }catch(PDOException $e){
+                echo "<script>alert('有数据段未被插入总表，请重试.');location.href='diary.php';</script>";
+            }
             $arr[$count] = $uploadfile;
             echo $uploadfile . "<br />";
             $count++;
         }
     }
     echo "总共" . $count . "文件";
+    echo "<script>alert('数据插入成功.');location.href='diary.php';</script>";
 ?>
+
+
+
+
+
+
+
