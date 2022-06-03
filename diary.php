@@ -163,9 +163,8 @@
                                     }
 
                                     document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").ondblclick = function(){
-
-                                        document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.width = document.body.offsetWidth*0.8; 
-                                        document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.height = document.body.offsetHeight*0.8; 
+                                        document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.width = 500; 
+                                        document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.height = 500; 
                                     }
                                 </script>';
                         }else{
