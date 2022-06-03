@@ -396,7 +396,7 @@ document.getElementById("work").onkeydown = function(){
 
 <style>
     img:focus {
-        outline: 5px solid purple;
+        outline: 5px solid orange;
         border-radius: 5px;
     }
 
