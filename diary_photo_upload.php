@@ -28,7 +28,7 @@
     $arr = array();   //定义一个数组存放上传图片的名称方便你以后会用的。
     $count = 0;
     if (!file_exists($dest_folder)) {
-        if(!mkdir($dest_folder, 777, true)){
+        if(!mkdir($dest_folder, 0777, true)){
             echo "dest_folder not created. please check.";
         } // 创建文件夹，并给予最高权限
     }
