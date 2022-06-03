@@ -170,10 +170,6 @@
                                         document.getElementById("unlink_editor").value = '.$rows[$i]['source_id'].'; 
                                     }
 
-                                    document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").onfocus = function(){
-                                        document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.border = "5px solid purple";
-                                    }
-
                                     document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").ondblclick = function(){
                                         document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.width = getWidth()-15; 
                                         document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.height = getHeight()*0.4; 
@@ -391,6 +387,10 @@ document.getElementById("work").onkeydown = function(){
 </script>
 
 <style>
+    img:focus {
+        outline: 2px solid purple;
+    }
+
     #map {
         position: relative; 
         top: 0; 
