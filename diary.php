@@ -124,7 +124,7 @@
                 $count += 1;
 
 
-                echo '<p class="narrator" style="font-size: large; text-align: center; color: purple">当前是总第 '.$row_count.' 条记录.</p>';
+                echo '<p class="narrator" style="font-size: large; text-align: center; color: purple">当前是总第 '.$count.' 条记录.</p>';
 
                 echo '<form action="diary_post.php" method="post" style="display:center; text-align:center;" id="date">
                         <button type="submit" class="header_button" onclick="" style="text-align:flex;" form="savework">保存</button>
