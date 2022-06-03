@@ -155,7 +155,7 @@
                     for($i=0; $i<$row_count; $i++){
                         if(substr($rows[$i]['address'], -3, -1) != "mp4" && substr($rows[$i]['address'], -3, -1) != "avi" && substr($rows[$i]['address'], -3, -1) != "ogg" && substr($rows[$i]['address'], -3, -1) != "mov"){
                             // We can show pictures then
-                            echo '<img src="'.$rows[$i]['address'].'" alt="'.$rows[$i]['address'].'" width="200" height="200" style="border-radius:5px; " position="absolute" id="'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'"></img>';
+                            echo '<img src="'.$rows[$i]['address'].'" alt="'.$rows[$i]['address'].'" width="200" height="200" style="border-radius:5px; " id="'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'"></img>';
                             echo '<script>
                                     document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").onclick = function(){
                                         document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.width = 200; 
@@ -164,8 +164,8 @@
 
                                     document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").ondblclick = function(){
 
-                                        document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.width = getWidth()*0.8; 
-                                        document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.height = getHeight()*0.8; 
+                                        document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.width = getWidth(); 
+                                        document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.height = getHeight(); 
                                     }
                                 </script>';
                         }else{
