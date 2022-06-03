@@ -59,7 +59,7 @@ if (!isset($_COOKIE['diary_name'])){
 
         if (!in_array($_FILES["uploads"]["type"][$key], $tp)) {
             echo "<script language='javascript'>";
-            echo "alert(\"文件类型错误。服务器不允许你上传为 ".$_FILES["uploads"]["type"][$key]." 的文件，请重试。\");";
+            echo "alert(\"文件类型错误。服务器不允许你上传类型为 ".$_FILES["uploads"]["type"][$key]." 的文件，请重试。\");";
             echo "</script>";
             echo "<script>location.href='diary.php';</script>";
             exit;
@@ -98,7 +98,9 @@ if (!isset($_COOKIE['diary_name'])){
         }
     }
     echo "总共" . $count . "文件";
-    echo "<script>alert('数据插入成功.');location.href='diary.php';</script>";
+    // echo "<script>alert('数据插入成功.');location.href='diary.php';</script>";
+    echo "数据插入和上传成功！";
+    echo "<a href='diary.php'><button value='返回'></button></a>";
 ?>
 
 
