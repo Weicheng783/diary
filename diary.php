@@ -146,7 +146,13 @@
                 echo '<input type="hidden" name="source_id" value="'.$count_gallery.'" class="input_font">';
                 echo '</form>';
 
-                
+                echo '<form action="diary_photo_unlink.php" name="form" method="post" enctype="multipart/form-data" style="font-size: large; text-align: center; color: purple">  
+                图片取消连接序号(source_id from 1): <input type="hidden" name="diary_id" value="'.$count.'" class="input_font">
+                <input type="number" name="source_id" />
+                <input type="submit" name="submit" value="取消连接(数据库条目删除)" />';
+                echo '</form>';
+
+                // BEGIN: PICTURE SHOWING
                 $sql = 'SELECT * FROM `gallery` WHERE `diary_id` = "'.$count.'"';
                 $stmt = $pdo->query($sql);
                 $row_count = $stmt->rowCount();
@@ -176,6 +182,7 @@
 
                     }
                 }
+                // END: PICTURE SHOWING
 
                 echo "<hr />";
 
@@ -230,6 +237,39 @@
                             if($rows[$i]['status'] != "removed" && $rows[$i]['status'] != "deleted" && $rows[$i]['status'] != "hide"){
                                 echo '<hr /><p class="narrator" style="font-size: large; text-align: center;">' . $rows[$i]['time'] . " 总第 " . $rows[$i]['diary_id'] . " 条 <strong style='color=purple'>状态标志: [" . $rows[$i]['status'] . ']</strong></p>';
                                 echo '<p class="narrator" style="text-align: center;"><textarea readonly="readonly" style="width:80%; text-align:left; font-size: 18px;" name="content" rows="15" placeholder="#说说你的日常叭" class="input_font">'. $rows[$i]['content'] .'</textarea></p>';
+                                
+                                // BEGIN: PICTURE SHOWING
+                                $sql = 'SELECT * FROM `gallery` WHERE `diary_id` = "'.$i.'"';
+                                $stmt = $pdo->query($sql);
+                                $row_count1 = $stmt->rowCount();
+                                $rows1 = $stmt->fetchAll();
+                                if(!$row_count1 == 0){
+                                    for($j=0; $j<$row_count1; $j++){
+                                        if(substr($rows1[$j]['address'], -3, -1) != "mp4" && substr($rows1[$j]['address'], -3, -1) != "avi" && substr($rows1[$j]['address'], -3, -1) != "ogg" && substr($rows1[$j]['address'], -3, -1) != "mov"){
+                                            // We can show pictures then
+                                            echo '<img src="'.$rows1[$j]['address'].'" alt="'.$rows1[$j]['address'].'" width="200" height="200" style="border-radius:5px; margin:2px; " id="'.$rows1[$j]['diary_id'].'_'.$rows1[$j]['source_id'].'"></img>';
+                                            echo '<script>
+                                                    document.getElementById("'.$rows1[$j]['diary_id'].'_'.$rows1[$j]['source_id'].'").onclick = function(){
+                                                        document.getElementById("'.$rows1[$j]['diary_id'].'_'.$rows1[$j]['source_id'].'").style.width = 200; 
+                                                        document.getElementById("'.$rows1[$j]['diary_id'].'_'.$rows1[$j]['source_id'].'").style.height = 200; 
+                                                    }
+
+                                                    document.getElementById("'.$rows1[$j]['diary_id'].'_'.$rows1[$j]['source_id'].'").ondblclick = function(){
+                                                        document.getElementById("'.$rows1[$j]['diary_id'].'_'.$rows1[$j]['source_id'].'").style.width = getWidth()-15; 
+                                                        document.getElementById("'.$rows1[$j]['diary_id'].'_'.$rows1[$j]['source_id'].'").style.height = getHeight()*0.4; 
+                                                    }
+                                                </script>';
+                                        }else{
+                                            echo '<video width="200" height="200" controls>';
+                                            //width="320" height="240"
+                                            echo '<source src="'.$rows1[$j]['address'].'" type="video/mp4" >';
+                                            echo 'Your browser does not support the video tag.</video>';
+                                        }
+
+                                    }
+                                }
+                                // END: PICTURE SHOWING
+
                             }
                             // echo "<script>
                             // var london = new maplibregl.Marker()
