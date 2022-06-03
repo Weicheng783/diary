@@ -147,7 +147,7 @@
                 echo '</form>';
 
                 
-                $sql = 'SELECT address FROM `gallery` WHERE `diary_id` = "'.$count.'"';
+                $sql = 'SELECT * FROM `gallery` WHERE `diary_id` = "'.$count.'"';
                 $stmt = $pdo->query($sql);
                 $row_count = $stmt->rowCount();
                 $rows = $stmt->fetchAll();
@@ -155,7 +155,12 @@
                     for($i=0; $i<$row_count; $i++){
                         if(substr($rows[$i]['address'], -3, -1) != "mp4" && substr($rows[$i]['address'], -3, -1) != "avi" && substr($rows[$i]['address'], -3, -1) != "ogg" && substr($rows[$i]['address'], -3, -1) != "mov"){
                             // We can show pictures then
-                            echo '<img src="'.$rows[$i]['address'].'" alt="'.$rows[$i]['address'].'" width="200" height="200"></img>';
+                            echo '<img src="'.$rows[$i]['address'].'" alt="'.$rows[$i]['address'].'" width="200" height="200" id="'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'"></img>';
+                            echo '<script>
+                                    document.getElementById('.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].').ondblclick = function(){
+                                        console.log("good to see you then");
+                                    }
+                                </script>';
                         }else{
                             echo '<video width="200" height="200" controls>';
                             //width="320" height="240"
