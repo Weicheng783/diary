@@ -122,6 +122,11 @@
                         <input type="hidden" name="status" value="normal" class="input_font"</input>
                         <button type="submit" class="header_button" onclick="" style="text-align:flex;">记录</button>
                       </form>';
+                
+                echo '<form action="handle.php" name="form" method="post" enctype="multipart/form-data">  
+                        <input type="file" name="file" value="文件"/>
+                        <input type="submit" name="submit" value="上传" />
+                        </form>';
 
                 echo "<hr />";
 
@@ -173,7 +178,7 @@
                     }else{
 
                         for($i = 0; $i < $row_count; $i++){
-                            if($rows[$i]['status'] != "removed" && $rows[$i]['status'] != "deleted"){
+                            if($rows[$i]['status'] != "removed" && $rows[$i]['status'] != "deleted" && $rows[$i]['status'] != "hide"){
                                 echo '<hr /><p class="narrator" style="font-size: large; text-align: center;">' . $rows[$i]['time'] . " 计数 " . $rows[$i]['diary_id'] . " <strong style='color=purple'>状态标志: [" . $rows[$i]['status'] . ']</strong></p>';
                                 echo '<p class="narrator" style="text-align: center;"><textarea readonly="readonly" style="width:80%; text-align:left; font-size: 18px;" name="content" rows="15" placeholder="#说说你的日常叭" class="input_font">'. $rows[$i]['content'] .'</textarea></p>';
                             }
