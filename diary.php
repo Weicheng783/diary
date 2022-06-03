@@ -146,6 +146,26 @@
                 echo '<input type="hidden" name="source_id" value="'.$count_gallery.'" class="input_font">';
                 echo '</form>';
 
+                
+                $sql = 'SELECT address FROM `gallery` WHERE `diary_id` = "'.$count.'"';
+                $stmt = $pdo->query($sql);
+                $row_count = $stmt->rowCount();
+                $rows = $stmt->fetchAll();
+                if(!$row_count == 0){
+                    for($i=0; $i<$row_count; $i++){
+                        if(substr($rows[$i]['address'], -3, -1) != "mp4" && substr($rows[$i]['address'], -3, -1) != "avi" && substr($rows[$i]['address'], -3, -1) != "ogg" && substr($rows[$i]['address'], -3, -1) != "mov"){
+                            // We can show pictures then
+                            echo '<img src="'.$rows[$i]['address'].'" alt="'.$rows[$i]['address'].'"></img>';
+                        }else{
+                            echo '<video  controls>';
+                            //width="320" height="240"
+                            echo '<source src="'.$rows[$i]['address'].'" type="video/mp4" >';
+                            echo 'Your browser does not support the video tag.</video>';
+                        }
+
+                    }
+                }
+
                 echo "<hr />";
 
                 //<button type="submit" class="header_button" onclick="" style="text-align:flex;" form="view" disabled="disabled">查看当日PDF大文档[功能已淘汰]</button>

@@ -89,7 +89,7 @@ if (!isset($_COOKIE['diary_name'])){
 
                 $source_id += $key;
             
-                $sql = "INSERT INTO `gallery` (`diary_id`, `source_id`, `address`) VALUES ('".$diary_id."', '".$source_id."', '".$uploadfile."');";
+                $sql = "INSERT INTO `gallery` (`diary_id`, `source_id`, `address`) VALUES ('".$diary_id."', '".$source_id."', 'http://150.230.127.102/diary/gallery/".$name."');";
                 $pdo->query($sql);
             
             }catch(PDOException $e){
