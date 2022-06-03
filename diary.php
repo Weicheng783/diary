@@ -148,7 +148,7 @@
 
                 echo '<form action="diary_photo_unlink.php" name="form" method="post" enctype="multipart/form-data" style="font-size: large; text-align: center; color: purple">  
                 图片取消连接序号(source_id from 1): <input type="hidden" name="diary_id" value="'.$count.'" class="input_font">
-                <input type="number" name="source_id" />
+                <input type="number" name="source_id" id="unlink_editor"/>
                 <input type="submit" name="submit" value="取消连接(数据库条目删除)" />';
                 echo '</form>';
 
@@ -166,6 +166,10 @@
                                     document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").onclick = function(){
                                         document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.width = 200; 
                                         document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.height = 200; 
+
+                                        document.getElementById("unlink_editor").value = '.$rows[$i]['source_id'].'; 
+                                        document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.border-width = 2px;
+                                        document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.border-color = purple;
                                     }
 
                                     document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").ondblclick = function(){
