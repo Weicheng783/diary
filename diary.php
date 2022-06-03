@@ -163,8 +163,9 @@
                                     }
 
                                     document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").ondblclick = function(){
-                                        document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.width = 500; 
-                                        document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.height = 500; 
+
+                                        document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.width = getWidth()*0.8; 
+                                        document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.height = getHeight()*0.8; 
                                     }
                                 </script>';
                         }else{
@@ -258,6 +259,27 @@
 
 
 <script>
+
+function getWidth() {
+  return Math.max(
+    document.body.scrollWidth,
+    document.documentElement.scrollWidth,
+    document.body.offsetWidth,
+    document.documentElement.offsetWidth,
+    document.documentElement.clientWidth
+  );
+}
+
+function getHeight() {
+  return Math.max(
+    document.body.scrollHeight,
+    document.documentElement.scrollHeight,
+    document.body.offsetHeight,
+    document.documentElement.offsetHeight,
+    document.documentElement.clientHeight
+  );
+}
+
 
 function saveWork(){
     document.all["work1"].value=document.all["work"].value
