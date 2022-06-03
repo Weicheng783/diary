@@ -130,7 +130,7 @@
                 $count_gallery += 1;
 
 
-                echo '<p class="narrator" style="font-size: large; text-align: center; color: purple">当前是总第 '.$count.' 条记录.</p>';
+                echo '<p class="narrator" style="font-size: large; text-align: center; color: purple">当前在写第 '.$count.' 条记录.</p>';
 
                 echo '<form action="diary_post.php" method="post" style="display:center; text-align:center;" id="date">
                         <button type="submit" class="header_button" onclick="" style="text-align:flex;" form="savework">保存</button>
@@ -245,6 +245,9 @@
                                 <input type="number" name="source_id" id="unlink_'.$rows[$i]['diary_id'].'"/>
                                 <input type="submit" name="submit" value="取消连接(数据库条目删除)" />';
                                 echo '</form>';
+
+                                $pdo = new pdo('mysql:host=localhost; dbname=diary', $GLOBALS['user'], $GLOBALS['password']);
+                                $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
                                 // BEGIN: PICTURE SHOWING
                                 $sql = 'SELECT * FROM `gallery` WHERE `diary_id` = "'.$i.'"';
