@@ -388,7 +388,8 @@ document.getElementById("work").onkeydown = function(){
 
 <style>
     img:focus {
-        outline: 2px solid purple;
+        outline: 5px solid purple;
+        border-radius: 5px;
     }
 
     #map {
