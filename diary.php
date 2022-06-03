@@ -116,11 +116,13 @@
                 <textarea style="display:none; width:0%; height:0%; text-align:left; font-size: 0px;" name="content" rows="0" placeholder="#说说你的日常叭" class="input_font" onkeyup="saveWork()" id="work1">'.$work.'</textarea>
                 </form>';
 
-                $sql = 'SELECT * FROM `diary` ORDER BY `time` DESC';
+                $sql = 'SELECT diary_id FROM `diary` ORDER BY `time` DESC LIMIT 0,1';
 
                 $stmt = $pdo->query($sql);
-                $row_count = $stmt->rowCount();
-                $row_count += 1;
+                $rows = $stmt->fetchAll();
+                $count = $rows[0]['diary_id'];
+                $count += 1;
+
 
                 echo '<p class="narrator" style="font-size: large; text-align: center; color: purple">当前是总第 '.$row_count.' 条记录.</p>';
 
