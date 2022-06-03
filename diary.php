@@ -124,7 +124,7 @@
                       </form>';
                 
                 echo '<form action="handle.php" name="form" method="post" enctype="multipart/form-data">  
-                        图片上:<input type="file" name="file" />
+                        图片上传:<input type="file" name="file" />
                         <input type="submit" name="submit" value="上传" />
                         </form>';
 
