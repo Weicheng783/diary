@@ -24,6 +24,8 @@ try{
     $sql = "INSERT INTO `diary` (`content`, `status`) VALUES ('".$content."', '".$status."');";
     $pdo->query($sql);
 
+    setcookie("diary_work", "", time());
+
     echo "<script>alert('数据插入成功.');location.href='diary.php';</script>";
 
 }catch(PDOException $e){
