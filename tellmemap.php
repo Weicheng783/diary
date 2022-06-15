@@ -78,6 +78,8 @@
 				// </script>";
 
 				echo "
+					<script>
+
 					var marker = new mapboxgl.Marker()
 					.setLngLat([".$rows[$i]['longitude'].", ".$rows[$i]['latitude']."])
 					.setPopup(
@@ -89,17 +91,20 @@
 					.addTo(map);
 					coordinates[loopTime] = [".$rows[$i]['latitude'].", ".$rows[$i]['longitude']."];
 					loopTime ++;
-
+					
+					</script>
 			";
 			}
 
-			echo "// Map zooming to fit all available points
+			echo "<script>
+			// Map zooming to fit all available points
 			if(coordinates.length != 0){
 				for (var i of coordinates){
 					bounds.extend(i);
 				}
 				map.fitBounds(bounds, { padding: 100 });
 			}
+			</script>
 			";
 		}
 
