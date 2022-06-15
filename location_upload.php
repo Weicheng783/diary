@@ -37,20 +37,20 @@ header("Content-type:text/html;charset=utf-8");
     // echo "<pre>";
     // print_r($_FILES["uploads"]);
 
-    // try{
-    //     $dsn="mysql:host=localhost; dbname=diary";
-    //     $user="weicheng";
-    //     $password='awc020826';
-    //     $pdo=new PDO($dsn,$user,$password);
-    //     $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+    try{
+        $dsn="mysql:host=localhost; dbname=diary";
+        $user="weicheng";
+        $password='awc020826';
+        $pdo=new PDO($dsn,$user,$password);
+        $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
-    //     $sql = "SET FOREIGN_KEY_CHECKS = 0;";
-    //     $pdo->query($sql);
+        $sql = "SET FOREIGN_KEY_CHECKS = 0;";
+        $pdo->query($sql);
 
-    // }catch(PDOException $e){
-    //     // echo "<script>alert('服务器连不上.');location.href='diary.php';</script>";
-    //     echo "服务器离线";
-    // }
+    }catch(PDOException $e){
+        // echo "<script>alert('服务器连不上.');location.href='diary.php';</script>";
+        echo "服务器离线";
+    }
 
     // foreach ($_FILES["uploads"]["error"] as $key => $error) {
         
