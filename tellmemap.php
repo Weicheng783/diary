@@ -29,7 +29,7 @@
 
 
 	try{
-		$user = "root";
+		$user = "weicheng";
 		$password = "awc020826";
 
 		$pdo = new pdo('mysql:host=localhost; dbname=diary', $user, $password);
