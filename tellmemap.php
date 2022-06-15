@@ -41,7 +41,7 @@
 		// }else{
 		// 	$sql = 'SELECT * FROM `register` WHERE `time_registered` LIKE CONCAT("'.$_COOKIE['date'].'","%") ORDER BY `time_registered` DESC';
 		// }
-		$sql = 'SELECT * FROM `location` ORDER BY `date` DESC';
+		$sql = 'SELECT * FROM `location_store` ORDER BY `date` DESC';
 
 		$stmt = $pdo->query($sql);
 		$row_count = $stmt->rowCount();
