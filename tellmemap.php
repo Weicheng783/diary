@@ -85,7 +85,7 @@
 					.setPopup(
 						new mapboxgl.Popup({ offset: 25 }) // add popups
 						.setHTML(
-			       `<h3>".$rows[$i]['date'].' '.$rows[$i]['time']."</h3><p>速度: ".$rows[$i]['speed']."</p><p>可能误差: ".$rows[$i]['drift']."</p>`
+			       `<h3>".$rows[$i]['date'].' '.$rows[$i]['time']."</h3><p>速度: ".$rows[$i]['speed']."</p><p>可能误差: ".$rows[$i]['drift']."</p><p>经度: ".$rows[$i]['latitude']."</p><p>纬度: ".$rows[$i]['longitude']."</p>`
 					)
 					)
 					.addTo(map);
