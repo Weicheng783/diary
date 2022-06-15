@@ -69,7 +69,7 @@
 			echo'<p class="narrator" style="font-size: x-large; text-align: center;">查询的日期下并没有记录。</p>';
 		}else{
 			for($i = 0; $i < $row_count; $i++){
-				echo "<script>console.log(".$rows[$i]['longitude'].")</script>";
+				// echo "<script>console.log(".$rows[$i]['longitude'].")</script>";
 
 				// echo "<script>
 				// var london = new maplibregl.Marker()
@@ -85,7 +85,7 @@
 					.setPopup(
 						new mapboxgl.Popup({ offset: 25 }) // add popups
 						.setHTML(
-			       `<h3>".$rows[$i]['date']."</h3><p>at: ".$rows[$i]['time']."</p>`
+			       `<h3>".$rows[$i]['date'].' '.$rows[$i]['time']."</h3><p>速度: ".$rows[$i]['speed']."</p><p>可能误差: ".$rows[$i]['drift']."</p>`
 					)
 					)
 					.addTo(map);
