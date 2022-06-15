@@ -1,5 +1,5 @@
 <?php
-header("Content-type:text/html;charset=utf-8");
+header("Content-type:text/html;charset=gb2312");
 // $file = $_FILES['file'];
 // $name = $file['name'];
 // $type = strtolower(substr($name,strrpos($name,'.')+1)); 
