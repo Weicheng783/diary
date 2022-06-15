@@ -23,10 +23,16 @@ for thing in cursor:
     raw = raw.split("\r\n")
     # print(raw)
     for s in raw:
-        longitude = s[s.find("<")+1 : s.find(",")].removeprefix("+")
+        longitude = s[s.find("<")+1 : s.find(",")]
         if(longitude == ""):
             continue
-        latitude = s[s.find(",")+1 : s.find(">")].removeprefix("+")
+        if(longitude[0] == "+"):
+            longitude = longitude[1:]
+        latitude = s[s.find(",")+1 : s.find(">")]
+        if(latitude == ""):
+            continue
+        if(latitude[0] == "+"):
+            latitude = latitude[1:]
         drift = s[s.find("+/-")+4 : s.find(" (")]
         speed = s[s.find("speed")+6 : s.find(" / course")]
         course = s[s.find("course")+7 : s.find(") @")]
