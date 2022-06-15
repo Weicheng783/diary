@@ -52,6 +52,7 @@
 			echo'<p class="narrator" style="font-size: x-large; text-align: center;">查询的日期下并没有记录。</p>';
 		}else{
 			for($i = 0; $i < $row_count; $i++){
+				echo "<script>console.log(".$rows[$i]['longitude'].")</script>";
 				echo "<script>
 				var london = new maplibregl.Marker()
 				 .setLngLat([".$rows[$i]['longitude'].", ".$rows[$i]['latitude']."])
