@@ -18,10 +18,27 @@ cursor.execute(query)
 
 for thing in cursor:
     # print(thing[1])
-    raw = things[1]
+    raw = thing[1]
+    raw = raw.split("\r\n")
+    # print(raw)
+    for s in raw:
+        longitude = s[s.find("<")+1 : s.find(",")].removeprefix("+")
+        latitude = s[s.find(",")+1 : s.find(">")].removeprefix("+")
+        drift = s[s.find("+/-")+4 : s.find(" (")]
+        speed = s[s.find("speed")+6 : s.find(" / course")]
+        course = s[s.find("course")+7 : s.find(") @")]
+        date = s[s.find("@")+2 : s.rfind(",")]
+        time = s[s.rfind(",")+2 : s.rfind(",")+2+8]
+        timezone = s[s.rfind(",")+2+8+1 : s.find("]")]
+        
+        print(longitude, latitude, drift,speed, course, date, time, timezone)
+    break
 
     # break
 
-cursor.close()
-cnx.close()
+try:
+    cursor.close()
+    cnx.close()
+except:
+    exit(0)
 # print(text)
