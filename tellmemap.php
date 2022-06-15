@@ -11,7 +11,7 @@
 
 <?php
 	header("Content-Type: text/html; charset=utf-8");
-    if(!isset($_COOKIE['name'])){
+    if(!isset($_COOKIE['diary_name'])){
         echo "<script>alert('请先登录。');location.href='diary.php';</script>";
         exit(1);
     }
