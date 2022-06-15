@@ -3,9 +3,13 @@
 
 import mysql.connector
 # pip install mysql-connector-python
-cnx = mysql.connector.connect(user='weicheng', password='awc020826',
+try{
+    cnx = mysql.connector.connect(user='weicheng', password='awc020826',
                               host='150.230.127.102',
                               database='diary', auth_plugin='mysql_native_password')
+} catch (Exception e){
+    exit(0)
+}
 
 cursor = cnx.cursor()
 
@@ -14,7 +18,9 @@ query = ("SELECT * FROM location")
 cursor.execute(query)
 
 for thing in cursor:
-    print(thing[1])
+    # print(thing[1])
+    raw = things[1]
+
     # break
 
 cursor.close()
