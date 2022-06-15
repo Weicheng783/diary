@@ -52,6 +52,11 @@
 
             $sql = "
 
+            CREATE TABLE IF NOT EXISTS `diary`.`location` ( 
+                `name` TEXT NOT NULL , 
+                `content` TEXT NOT NULL 
+            );
+
             CREATE TABLE IF NOT EXISTS `user` (
               `id` int NOT NULL,
               `name` TEXT NOT NULL,
