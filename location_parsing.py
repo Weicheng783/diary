@@ -3,13 +3,12 @@
 
 import mysql.connector
 # pip install mysql-connector-python
-try{
+try:
     cnx = mysql.connector.connect(user='weicheng', password='awc020826',
                               host='150.230.127.102',
                               database='diary', auth_plugin='mysql_native_password')
-} catch (Exception e){
+except:
     exit(0)
-}
 
 cursor = cnx.cursor()
 
