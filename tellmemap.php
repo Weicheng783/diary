@@ -81,7 +81,7 @@
 					<script>
 
 					var marker = new mapboxgl.Marker()
-					.setLngLat([".$rows[$i]['longitude'].", ".$rows[$i]['latitude']."])
+					.setLngLat([".$rows[$i]['latitude'].", ".$rows[$i]['longitude']."])
 					.setPopup(
 						new mapboxgl.Popup({ offset: 25 }) // add popups
 						.setHTML(
