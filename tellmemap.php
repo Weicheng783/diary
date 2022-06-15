@@ -46,12 +46,12 @@
 		$stmt = $pdo->query($sql);
 		$row_count = $stmt->rowCount();
 		$rows = $stmt->fetchAll();
+		echo "<script>console.log(".$row_count.")</script>";
 
 		if($row_count == 0){
 			echo'<p class="narrator" style="font-size: x-large; text-align: center;">查询的日期下并没有记录。</p>';
 		}else{
 			for($i = 0; $i < $row_count; $i++){
-				console.log($rows[$i]['longitude'].", ".$rows[$i]['latitude']);
 				echo "<script>
 				var london = new maplibregl.Marker()
 				 .setLngLat([".$rows[$i]['longitude'].", ".$rows[$i]['latitude']."])
