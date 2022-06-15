@@ -54,9 +54,9 @@
 
             CREATE TABLE IF NOT EXISTS `location_store` ( 
                 `number` INT NOT NULL AUTO_INCREMENT , 
-                `longitude` INT NOT NULL , 
-                `latitude` INT NOT NULL , 
-                `drift` INT NULL , 
+                `longitude` DOUBLE NOT NULL , 
+                `latitude` DOUBLE NOT NULL , 
+                `drift` TEXT NULL , 
                 `speed` TEXT NULL , 
                 `course` TEXT NULL , 
                 `date` DATE NOT NULL , 
