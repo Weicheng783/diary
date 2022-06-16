@@ -41,6 +41,7 @@
 
 		<button type="submit" class="header_button" onclick="" style="text-align:flex;">查看所选范围</button>
 	</form>';
+		echo "<p>走了1</p>";
 	} else {
 		echo '<form action="map_setRange.php" method="post" style="display:center; text-align:center;" id="date">
 		<p>起始年: <input type="input" name="map_year" value="'.$_REQUEST['map_year'].'" class="input_font" id="a" onkeyup="copya()"></input> 查找到年份: <input type="input" name="map_year2" value="'.$_REQUEST['map_year2'].'" class="input_font" id="d" onkeyup="copyd()"></input></p>
@@ -52,6 +53,7 @@
 
 		<button type="submit" class="header_button" onclick="" style="text-align:flex;">查看所选范围</button>
 	</form>';
+		echo "<p>是2</p>";
 	}
 
 	echo '<form action="map_dateReset.php" method="post" style="display:center; text-align:center;">';
