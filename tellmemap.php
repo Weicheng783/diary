@@ -36,29 +36,67 @@
 	$minute = date('i');
 	$second = date('s');
 
+	$year2 = date('Y');
+	$month2 = date('m');
+	$day2 = date('d');
+	$hour2 = date('H');
+	$minute2 = date('i');
+	$second2 = date('s');
+
 	echo '<form action="diary_reset.php" method="post" style="display:center; text-align:center;">';
 	echo '<p><button type="submit" class="header_button" onclick="" style="text-align:flex;">清除已登录状态</button></p>';
 	echo '</form>';
 
 	// echo '<p style="text-align:center;"><a href="showMap.php" class="header_button"><button type="button" class="header_button">当日活点轨迹地图(测试中)</button></a></p>';
 
-	// if(isset($_COOKIE['diary_year'])){
-	// 	$year = $_COOKIE['diary_year'];
-	// }
+	if(isset($_COOKIE['map_year'])){
+		$year = $_COOKIE['map_year'];
+	}
 
-	// if(isset($_COOKIE['diary_month'])){
-	// 	$month = $_COOKIE['diary_month'];
-	// }
+	if(isset($_COOKIE['map_month'])){
+		$month = $_COOKIE['map_month'];
+	}
 
-	// if(isset($_COOKIE['diary_day'])){
-	// 	$day = $_COOKIE['diary_day'];
-	// }
+	if(isset($_COOKIE['map_day'])){
+		$day = $_COOKIE['map_day'];
+	}
 
-	// if(isset($_COOKIE['diary_work'])){
-	// 	$work = $_COOKIE['diary_work'];
-	// }else{
-	// 	$work = "";
-	// }
+	if(isset($_COOKIE['map_hour'])){
+		$hour = $_COOKIE['map_hour'];
+	}
+
+	if(isset($_COOKIE['map_minute'])){
+		$minute = $_COOKIE['map_minute'];
+	}
+
+	if(isset($_COOKIE['map_second'])){
+		$second = $_COOKIE['map_second'];
+	}
+
+	// 2nd round
+	if(isset($_COOKIE['map_year2'])){
+		$year2 = $_COOKIE['map_year2'];
+	}
+
+	if(isset($_COOKIE['map_month2'])){
+		$month2 = $_COOKIE['map_month2'];
+	}
+
+	if(isset($_COOKIE['map_day2'])){
+		$day2 = $_COOKIE['map_day2'];
+	}
+
+	if(isset($_COOKIE['map_hour2'])){
+		$hour2 = $_COOKIE['map_hour2'];
+	}
+
+	if(isset($_COOKIE['map_minute2'])){
+		$minute2 = $_COOKIE['map_minute2'];
+	}
+
+	if(isset($_COOKIE['map_second2'])){
+		$second2 = $_COOKIE['map_second2'];
+	}
 
 	echo "<hr />";
 
@@ -94,7 +132,7 @@
 	echo '</form>';
 
 	echo '<div id="indicator"></div>';
-	echo '<div id="map" style="position: absolute; top: 0px; width: 100%; height: 80%;  border-radius: 20px;"></div>';
+	echo '<div id="map" style="position: absolute; top: 0px; width: 100%; height: 80%; border-radius: 20px; border-width: 10px; border: solid; border-color: purple;"></div>';
 	echo '<div id="placeholder" style="height:200px;"></div>';
 	echo '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>';
 	echo '<script type="text/javascript">';
