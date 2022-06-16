@@ -11,6 +11,8 @@
 	</head>
 </html>
 
+<body style="background-color: antiquewhite;">
+
 <?php
 	header("Content-Type: text/html; charset=utf-8");
     if(!isset($_COOKIE['diary_name'])){
@@ -148,6 +150,7 @@
 
 </script>
 
+</body>
 
 
 <!-- <style>
