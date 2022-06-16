@@ -55,7 +55,7 @@
 	}
 
 	echo '<form action="map_dateReset.php" method="post" style="display:center; text-align:center;">';
-	echo '<p><button type="submit" class="header_button" onclick="" style="text-align:flex;">清除范围</button></p>';
+	echo '<p><button type="submit" class="header_button" onclick="" style="text-align:flex; margin-bottom:20px;">清除范围</button></p>';
 	echo '</form>';
 
 	echo '<div id="indicator"></div>';
