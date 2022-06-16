@@ -19,6 +19,10 @@
             <p class="narrator" style="font-size: x-large; text-align: center;">过好每一天的生活</p>
     
     <?php
+        $user = "weicheng";
+        $password = "awc020826";
+        header("Content-Type: text/html; charset=utf-8");
+
         try{
             // First fetch weekly cost
             // Sort out start and end date
