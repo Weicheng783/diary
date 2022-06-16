@@ -117,6 +117,7 @@
                                         <td><input class='input_font' name='usednum' value='".$rows[$i]['usednum']."'></input></td>
                                         <td><input class='input_font' name='cost' value='".$rows[$i]['cost']."'></input></td>
                                         <td><select class='input_font' id='select_status' name='status' value='".$rows[$i]['status']."'>
+                                            <option value='".$rows[$i]['status']."'>".$rows[$i]['status']."</option>
                                             <option value='已储存'>已储存</option>
                                             <option value='已用完'>已用完</option>
                                             <option value='已丢弃'>已丢弃</option>
