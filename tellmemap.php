@@ -39,9 +39,9 @@
 	$year2 = date('Y');
 	$month2 = date('m');
 	$day2 = date('d');
-	$hour2 = date('H');
-	$minute2 = date('i');
-	$second2 = date('s');
+	$hour2 = "23";
+	$minute2 = "59";
+	$second2 = "59";
 
 	echo '<form action="diary_reset.php" method="post" style="display:center; text-align:center;">';
 	echo '<p><button type="submit" class="header_button" onclick="" style="text-align:flex;">清除已登录状态</button></p>';
@@ -170,7 +170,9 @@
 		// }else{
 		// 	$sql = 'SELECT * FROM `register` WHERE `time_registered` LIKE CONCAT("'.$_COOKIE['date'].'","%") ORDER BY `time_registered` DESC';
 		// }
-		$sql = 'SELECT * FROM `location_store` ORDER BY `date` DESC LIMIT 1000';
+
+		// $sql = 'SELECT * FROM `location_store` ORDER BY `date` DESC LIMIT 1000';
+		$sql = 'SELECT * FROM `location_store` WHERE `date` BETWEEN "'.$year.'-'.$month.'-'.$day.'" AND "'.$year2.'-'.$month2.'-'.$day2.'" AND `time` BETWEEN "'.$hour.':'.$minute.':'.$second.'" AND "'.$hour2.':'.$minute2.':'.$second2.'"';
 
 		$stmt = $pdo->query($sql);
 		$row_count = $stmt->rowCount();
@@ -178,7 +180,7 @@
 		echo "<script>console.log(".$row_count.")</script>";
 
 		if($row_count == 0){
-			echo'<p class="narrator" style="font-size: x-large; text-align: center;">查询的日期下并没有记录。</p>';
+			echo'<p class="narrator" style="font-size: x-large; text-align: center;">查询条件/时间范围下并没有记录。</p>';
 		}else{
 			for($i = 0; $i < $row_count; $i++){
 				// echo "<script>console.log(".$rows[$i]['longitude'].")</script>";
