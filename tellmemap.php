@@ -63,7 +63,6 @@
 
 	if(isset($_COOKIE['map_hour'])){
 		$hour = $_COOKIE['map_hour'];
-		echo "<p>is set map_hour</p>";
 	}
 
 	if(isset($_COOKIE['map_minute'])){
@@ -102,7 +101,7 @@
 	echo "<hr />";
 
 
-	if(!isset($_REQUEST['map_hour']) or $_REQUEST['map_hour'] == ""){
+	if(isset($_REQUEST['map_hour']) and $_REQUEST['map_hour'] != ""){
 		echo '<form action="map_setRange.php" method="post" style="display:center; text-align:center;" id="date">
 		<p>起始年: <input type="input" name="map_year" value="'.$year.'" class="input_font" id="a" onkeyup="copya()"></input> 查找到年份: <input type="input" name="map_year2" value="'.$year.'" class="input_font" id="d" onkeyup="copyd()"></input></p>
 		<p>起始月: <input type="input" name="map_month" value="'.$month.'" class="input_font" id="b" onkeyup="copyb()"></input> 查找到月份: <input type="input" name="map_month2" value="'.$month.'" class="input_font" id="e" onkeyup="copye()"></input></p>
