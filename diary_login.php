@@ -56,7 +56,7 @@
                 `id` INT NOT NULL AUTO_INCREMENT , 
                 `name` TEXT NOT NULL , 
                 `cost` DOUBLE NOT NULL , 
-                `totalnum` INT NOT NULL DEFAULT 0, 
+                `totalnum` INT NOT NULL DEFAULT 1, 
                 `usednum` INT NOT NULL DEFAULT 0,
                 `note` TEXT NULL , 
                 `status` TEXT NULL , 

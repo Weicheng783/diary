@@ -57,6 +57,14 @@ try{
             exit(0);
         }
 
+        if($totalnum == ""){
+            $totalnum = "1";
+        }
+
+        if($usednum == ""){
+            $usednum = "0";
+        }
+
         $sql = "UPDATE `food` SET `name`='".$name."', `note`='".$note."', `timeadded`='".$timeadded."', `usedby`='".$usedby."', `cost`='".$cost."', `totalnum`='".$totalnum."', `usednum`='".$usednum."', `status`='".$status."' WHERE `id`='".$id."';";
         $pdo->query($sql);
 
