@@ -34,6 +34,8 @@ try{
         $sql = "INSERT INTO `food` (`name`, `note`, `timeadded`, `usedby`, `cost`, `totalnum`, `usednum`, `status`) VALUES ('".$name."', '".$note."', '".$timeadded."', '".$usedby."', '".$cost."', '".$totalnum."', '".$usednum."', '".$status."');";
         $pdo->query($sql);
 
+        echo "<script>console.log('".$sql."');</script>";
+
         echo "<script>alert('食材加入成功.');location.href='food.php';</script>";
 
     }elseif ($request == "update") {
