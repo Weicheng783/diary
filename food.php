@@ -14,6 +14,7 @@
                 <!-- <img src="./logo.png" id="logo" alt="Weicheng_Quiz_Welcome_Message" style=" text-align: left; border-radius:20px; display:inline-block; height:100px; width:auto;"> -->
             </div>
 
+            <p class="narrator" style="font-size: x-large; text-align: center;">食材管理中心</p>
             <p class="narrator" style="font-size: x-large; text-align: center; " id="ymd"></p>
             <p class="narrator" style="font-size: x-large; text-align: center;">过好每一天的生活</p>
     <?php
@@ -207,7 +208,7 @@ function fun(){
         }
 
         document.getElementById("ymd").innerHTML = +y+"-"+m+"-"+d+" "+hh+":"+mm+":"+ss+" "+notice+"";
-        saveWork();
+        // saveWork();
         setTimeout("fun()",1000)
     }
 
@@ -265,7 +266,7 @@ document.getElementById("work").onkeydown = function(){
 
     .input_font{
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        font-size: 25px;
+        font-size: 15px;
         text-align: center;
     }
 
