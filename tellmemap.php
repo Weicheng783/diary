@@ -183,7 +183,7 @@
 		$row_count = $stmt->rowCount();
 		$rows = $stmt->fetchAll();
 		echo "<script>console.log(".$row_count.")</script>";
-		echo '<script>document.getElementById("number_entries_indicator").innerHTML = "查询到 '.$row_count.' 条记录。"; </script>';
+		echo '<script>document.getElementById("number_entries_indicator").innerHTML = "查询到 '.$row_count.' 条记录，地图加载可能缓慢。"; </script>';
 
 		if($row_count == 0){
 			// echo'<p class="narrator" style="font-size: x-large; text-align: center;">查询条件/时间范围下并没有记录。</p>';
@@ -305,8 +305,8 @@ function fun(){
     }
 </script>
 
-<!-- <style>
-    #map {
+<style>
+    /* #map {
         position: absolute; 
         top: 0; 
         right: 0; 
@@ -318,6 +318,12 @@ function fun(){
         border-color: skyblue;
         background-color: antiquewhite;
         text-align: center;
+    } */
+
+	.input_font{
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 25px;
+        text-align: center;
     }
 
-</style> -->
+</style>
