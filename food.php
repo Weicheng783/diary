@@ -52,7 +52,7 @@
             }
 
             for($i=0; $i<$row_count; $i++){
-                echo '<p class="narrator" style="font-size: x-large; text-align: center; color: orange">本周('.$week_start.' - '.$week_end.')，总成本 '.$rows[$i]['SUM(`cost`)'].' 英镑，尽量节约。今天是本周的第 '.$w.' 天。</p>';
+                echo '<p class="narrator" style="font-size: x-large; text-align: center; color: orange">本周('.$week_start.' - '.$week_end.')，总成本 <strong>'.$rows[$i]['SUM(`cost`)'].'</strong> 英镑，尽量节约。今天是本周的第 '.$w.' 天。</p>';
             }
 
 
