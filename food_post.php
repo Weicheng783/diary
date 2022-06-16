@@ -52,7 +52,7 @@ try{
         }
 
         if($cost == ""){
-            echo "<script>alert('填写成本.');location.href='food.php';</script>";
+            echo "<script>alert('填写成本.');location.href='javascript:history.go(-1)';</script>";
             exit(0);
         }
 
