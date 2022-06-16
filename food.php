@@ -74,7 +74,52 @@
                 echo "<hr />";
 
                 try{
+                    // First fetch weekly cost
+                    // Sort out start and end date
+                    // 当前日期
+                    $defaultDate = date("Y-m-d");
+                    //$first =1 表示每周星期一为开始日期 0表示每周日为开始日期
+                    $first=1;
+                    //获取当前周的第几天 周日是 0 周一到周六是 1 - 6
+                    $w=date('w',strtotime($sdefaultDate));
+                    //获取本周开始日期，如果$w是0，则表示周日，减去 6 天
+                    $week_start=date('Y-m-d',strtotime("$defaultDate -".($w ? $w - $first : 6).' days'));
+                    //本周结束日期
+                    $week_end=date('Y-m-d',strtotime("$week_start +6 days"));
 
+
+                    $pdo = new pdo('mysql:host=localhost; dbname=diary', $GLOBALS['user'], $GLOBALS['password']);
+                    $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+
+                    $sql = "SELECT SUM(`cost`) FROM `food` WHERE `food`.`timeadded` BETWEEN '".$week_start." 00:00:00' AND '".$week_end." 23:59:59'";
+
+                    $stmt = $pdo->query($sql);
+                    $row_count = $stmt->rowCount();
+                    $rows = $stmt->fetchAll();
+
+                    for($i=0; $i<$row_count; $i++){
+                        echo '<p class="narrator" style="font-size: large; text-align: center; color: purple">本周('.$week_start.' - '.$week_end.')，总成本 '.$rows[$i]['SUM(`cost`)'].' 英镑，尽量节约。</p>';
+                    }
+
+
+                    // First fetch monthly cost
+                    // Sort out start and end date
+                    $startDateMonth = date('Y-m-01',time());//获取该月份的第一天
+                    $endDateMonth = date('Y-m-t',time());//获取该月份的最后一天
+                    // SELECT SUM(`cost`) FROM `food` WHERE `food`.`timeadded` BETWEEN '2022-06-01 00:00:00' AND '2022-06-30 23:59:59'
+
+                    $sql = "SELECT SUM(`cost`) FROM `food` WHERE `food`.`timeadded` BETWEEN '".$startDateMonth." 00:00:00' AND '".$endDateMonth." 23:59:59'";
+
+                    $stmt = $pdo->query($sql);
+                    $row_count = $stmt->rowCount();
+                    $rows = $stmt->fetchAll();
+
+                    for($i=0; $i<$row_count; $i++){
+                        echo '<p class="narrator" style="font-size: large; text-align: center; color: purple">本月('.$startDateMonth.' - '.$endDateMonth.')，总成本 '.$rows[$i]['SUM(`cost`)'].' 英镑。</p>';
+                    }
+
+
+                    // MAIN LOGIC
                     $pdo = new pdo('mysql:host=localhost; dbname=diary', $GLOBALS['user'], $GLOBALS['password']);
                     $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
