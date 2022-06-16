@@ -22,12 +22,12 @@ try{
         $status = $_REQUEST['status'];
 
         if($name == ""){
-            echo "<script>alert('填写名称.');location.href='food.php';</script>";
+            echo "<script>alert('请返回填写名称.');</script>";
             exit(0);
         }
 
         if($cost == ""){
-            echo "<script>alert('填写成本.');location.href='food.php';</script>";
+            echo "<script>alert('请返回填写成本.');</script>";
             exit(0);
         }
 
