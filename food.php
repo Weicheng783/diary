@@ -55,8 +55,8 @@
                             <option value='已丢弃'>已丢弃</option>
                             <option value='已退赠'>已退赠</option>
                         </select></td>
+                        <td><button type='submit' class='header_button' onclick=''>提交</button></td>
                         <input type='hidden' name='request' value='submit'></input>
-                        <button type='submit' class='header_button' onclick=''>提交</button>
                     </tr>
 
                     </form>
@@ -121,10 +121,10 @@
                                             <option value='已丢弃'>已丢弃</option>
                                             <option value='已退赠'>已退赠</option>
                                         </select></td>
+                                        <td><button type='submit' class='header_button' onclick=''>更改'".$rows[$i]['name']."'</button></td>
                                     </tr>
                                     <input type='hidden' name='id' value='".$rows[$i]['id']."'></input>
                                     <input type='hidden' name='request' value='update'></input>
-                                    <button type='submit' class='header_button' onclick=''>更改'".$rows[$i]['name']."'</button>
                                     </form>
                                 ";
                             }
