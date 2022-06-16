@@ -31,6 +31,14 @@ try{
             exit(0);
         }
 
+        if($totalnum == ""){
+            $totalnum = "1";
+        }
+
+        if($usednum == ""){
+            $usednum = "0";
+        }
+
         $sql = "INSERT INTO `food` (`name`, `note`, `timeadded`, `usedby`, `cost`, `totalnum`, `usednum`, `status`) VALUES ('".$name."', '".$note."', '".$timeadded."', '".$usedby."', '".$cost."', '".$totalnum."', '".$usednum."', '".$status."');";
         $pdo->query($sql);
 
