@@ -69,7 +69,7 @@
             $rows = $stmt->fetchAll();
 
             for($i=0; $i<$row_count; $i++){
-                echo '<p class="narrator" style="font-size: x-large; text-align: center; color: orange">本月('.$startDateMonth.' - '.$endDateMonth.')，总成本 '.$rows[$i]['SUM(`cost`)'].' 英镑。</p>';
+                echo '<p class="narrator" style="font-size: x-large; text-align: center; color: orange">本月('.$startDateMonth.' - '.$endDateMonth.')，总成本 <strong>'.$rows[$i]['SUM(`cost`)'].'</strong> 英镑。</p>';
             }
 
         }catch(PDOException $e){
