@@ -131,6 +131,8 @@
 	echo '<p><button type="submit" class="header_button" onclick="" style="text-align:flex; margin-bottom:50px;">清除范围</button></p>';
 	echo '</form>';
 
+	echo'<p class="narrator" style="font-size: x-large; text-align: center; id="status_indicator"></p>';
+
 	echo '<div id="indicator"></div>';
 	echo '<div id="map" style="position: absolute; top: 0px; width: 100%; height: 80%; border-radius: 20px; border-width: 10px; border: solid; border-color: purple;"></div>';
 	echo '<div id="placeholder" style="height:200px;"></div>';
@@ -180,9 +182,8 @@
 		echo "<script>console.log(".$row_count.")</script>";
 
 		if($row_count == 0){
-			echo'<p class="narrator" style="font-size: x-large; text-align: center;">查询条件/时间范围下并没有记录。</p>';
-			echo '<script>document.getElementById("map").style.width = 0+"px"; </script>';
-			exit();
+			// echo'<p class="narrator" style="font-size: x-large; text-align: center;">查询条件/时间范围下并没有记录。</p>';
+			echo '<script>document.getElementById("status_indicator").value = "查询条件/时间范围下并没有记录。"; </script>';
 		}else{
 			for($i = 0; $i < $row_count; $i++){
 				// echo "<script>console.log(".$rows[$i]['longitude'].")</script>";
