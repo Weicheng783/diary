@@ -47,9 +47,9 @@
             $row_count = $stmt->rowCount();
             $rows = $stmt->fetchAll();
 
-            if($w == "0"){
-                $w = "7";
-            }
+            // if($w == "0"){
+            //     $w = "7";
+            // }
 
             for($i=0; $i<$row_count; $i++){
                 echo '<p class="narrator" style="font-size: x-large; text-align: center; color: orange">本周('.$week_start.' - '.$week_end.')，总成本 <strong>'.$rows[$i]['SUM(`cost`)'].'</strong> 英镑，注意节约。今天是本周的第 '.$w.' 天。</p>';
