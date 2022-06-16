@@ -101,14 +101,14 @@
                     </tr>";
                 
                 // sudo cp /usr/share/zoneinfo/Europe/London /etc/localtime; date -R
-                
+
                 echo"
                     <form action='food_post.php' method='post' style='margin:auto'>
                     <tr>
                         <td><input class='input_font' name='name' value=''></input></td>
                         <td><input class='input_font' name='note' value=''></input></td>
-                        <td><input type='datetime' class='input_font' name='timeadded' value='".date('Y')."-".date('m')."-".date('d')." ".date('H').":".date('i').":".date('s')."'></input></td>
-                        <td><input type='date' class='input_font' name='usedby' value='".date('Y')."-".date('m')."-".date('d')."'></input></td>
+                        <td><input type='datetime' class='input_font' name='timeadded' value='".date('Y',strtotime("-1 hour"))."-".date('m',strtotime("-1 hour"))."-".date('d',strtotime("-1 hour"))." ".date('H',strtotime("-1 hour")).":".date('i',strtotime("-1 hour")).":".date('s',strtotime("-1 hour"))."'></input></td>
+                        <td><input type='date' class='input_font' name='usedby' value='".date('Y',strtotime("-1 hour"))."-".date('m',strtotime("-1 hour"))."-".date('d',strtotime("-1 hour"))."'></input></td>
                         <td><input class='input_font' name='totalnum' value=''></input></td>
                         <td><input class='input_font' name='usednum' value=''></input></td>
                         <td><input class='input_font' name='cost' value=''></input></td>
