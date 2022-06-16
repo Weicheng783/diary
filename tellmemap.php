@@ -29,31 +29,6 @@
     }
 	echo "<div style='background-color: antiquewhite;'>";
 
-	echo '<div id="indicator"></div>';
-	echo '<div id="map" style="position: absolute; top: 0px; width: 100%; height: 80%;  border-radius: 20px;"></div>';
-	echo '<div id="placeholder" style="height:200px;"></div>';
-	echo '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>';
-	echo '<script type="text/javascript">';
-	// echo " var map = new maplibregl.Map({
-	// 	container: 'map',
-	// 	style: 'https://api.maptiler.com/maps/streets/style.json?key=873s1SijZFFScPeHZHFB',
-	// 	center: [-2.234992488745344, 53.47414393324406],
-	// 	zoom: 17,
-	// 	});
-	// </script>";
-
-	echo "mapboxgl.accessToken = 'pk.eyJ1IjoiZGludWQxMSIsImEiOiJjbDE1Nzdib3QwaDJ6M2pzZ2p4bGdhZWo2In0.pNx1qRgo7vsmuoVt0R5-nQ';
-			var map = new mapboxgl.Map({
-			container: 'map',
-			style: 'mapbox://styles/mapbox/streets-v11',
-			center: [-2.230912, 53.465211],
-			zoom: 6
-			});
-			var coordinates = [];
-			var loopTime = 0;
-			var bounds = new mapboxgl.LngLatBounds();
-		";
-	echo "</script>";
 
 	if(!isset($_REQUEST['map_hour']) or $_REQUEST['map_hour'] == ""){
 		echo '<form action="map_setRange.php" method="post" style="display:center; text-align:center;" id="date">
@@ -82,6 +57,32 @@
 	echo '<form action="map_dateReset.php" method="post" style="display:center; text-align:center;">';
 	echo '<p><button type="submit" class="header_button" onclick="" style="text-align:flex;">清除范围</button></p>';
 	echo '</form>';
+
+	echo '<div id="indicator"></div>';
+	echo '<div id="map" style="position: absolute; top: 0px; width: 100%; height: 80%;  border-radius: 20px;"></div>';
+	echo '<div id="placeholder" style="height:200px;"></div>';
+	echo '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>';
+	echo '<script type="text/javascript">';
+	// echo " var map = new maplibregl.Map({
+	// 	container: 'map',
+	// 	style: 'https://api.maptiler.com/maps/streets/style.json?key=873s1SijZFFScPeHZHFB',
+	// 	center: [-2.234992488745344, 53.47414393324406],
+	// 	zoom: 17,
+	// 	});
+	// </script>";
+
+	echo "mapboxgl.accessToken = 'pk.eyJ1IjoiZGludWQxMSIsImEiOiJjbDE1Nzdib3QwaDJ6M2pzZ2p4bGdhZWo2In0.pNx1qRgo7vsmuoVt0R5-nQ';
+			var map = new mapboxgl.Map({
+			container: 'map',
+			style: 'mapbox://styles/mapbox/streets-v11',
+			center: [-2.230912, 53.465211],
+			zoom: 6
+			});
+			var coordinates = [];
+			var loopTime = 0;
+			var bounds = new mapboxgl.LngLatBounds();
+		";
+	echo "</script>";
 
 	try{
 		$user = "weicheng";
