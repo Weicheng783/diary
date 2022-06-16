@@ -9,9 +9,17 @@
 		<script src='https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js'></script>
     	<link href='https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.css' rel='stylesheet' />
 	</head>
+	<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 </html>
 
 <body style="background-color: antiquewhite;">
+
+<div id='header_group' style="display:block; text-align: center;">
+	<!-- <div style="display: inline-flex;"> -->
+	<!-- <img src="./logo.png" id="logo" alt="Weicheng_Quiz_Welcome_Message" style=" text-align: left; border-radius:20px; display:inline-block; height:100px; width:auto;"> -->
+</div>
+
+<p class="narrator" style="font-size: x-large; text-align: center; " id="ymd"></p>
 
 <?php
 	header("Content-Type: text/html; charset=utf-8");
@@ -47,6 +55,33 @@
 		";
 	echo "</script>";
 
+	if(!isset($_REQUEST['map_hour']) or $_REQUEST['map_hour'] == ""){
+		echo '<form action="map_setRange.php" method="post" style="display:center; text-align:center;" id="date">
+		<p>起始年: <input type="input" name="map_year" value="'.$year.'" class="input_font" id="a" onkeyup="copya()"></input> 查找到年份: <input type="input" name="map_year2" value="'.$year.'" class="input_font" id="d" onkeyup="copyd()"></input></p>
+		<p>起始月: <input type="input" name="map_month" value="'.$month.'" class="input_font" id="b" onkeyup="copyb()"></input> 查找到月份: <input type="input" name="map_month2" value="'.$month.'" class="input_font" id="e" onkeyup="copye()"></input></p>
+		<p>起始日: <input type="input" name="map_day" value="'.$day.'" class="input_font" id="c" onkeyup="copyc()"></input> 查找到日: <input type="input" name="map_date2" value="'.$day.'" class="input_font" id="f" onkeyup="copyf()"></input></p>
+		<p>起始时: <input type="input" name="map_hour" value="00" class="input_font" id="g" onkeyup="copyg()"></input> 查找到小时: <input type="input" name="map_hour2" value="'.$hour.'" class="input_font" id="j" onkeyup="copyj()"></input></p>
+		<p>起始分: <input type="input" name="map_minute" value="00" class="input_font" id="h" onkeyup="copyh()"></input> 查找到分钟: <input type="input" name="map_minute2" value="'.$minute.'" class="input_font" id="k" onkeyup="copyk()"></input></p>
+		<p>起始秒: <input type="input" name="map_second" value="00" class="input_font" id="i" onkeyup="copyi()"></input> 查找到秒: <input type="input" name="map_second2" value="00" class="input_font" id="l" onkeyup="copyl()"></input></p>
+
+		<button type="submit" class="header_button" onclick="" style="text-align:flex;">查看所选范围</button>
+	</form>';
+	} else {
+		echo '<form action="map_setRange.php" method="post" style="display:center; text-align:center;" id="date">
+		<p>起始年: <input type="input" name="map_year" value="'.$_REQUEST['map_year'].'" class="input_font" id="a" onkeyup="copya()"></input> 查找到年份: <input type="input" name="map_year2" value="'.$_REQUEST['map_year2'].'" class="input_font" id="d" onkeyup="copyd()"></input></p>
+		<p>起始月: <input type="input" name="map_month" value="'.$_REQUEST['map_month'].'" class="input_font" id="b" onkeyup="copyb()"></input> 查找到月份: <input type="input" name="map_month2" value="'.$_REQUEST['map_month2'].'" class="input_font" id="e" onkeyup="copye()"></input></p>
+		<p>起始日: <input type="input" name="map_day" value="'.$_REQUEST['map_day'].'" class="input_font" id="c" onkeyup="copyc()"></input> 查找到日: <input type="input" name="map_date2" value="'.$_REQUEST['map_day2'].'" class="input_font" id="f" onkeyup="copyf()"></input></p>
+		<p>起始时: <input type="input" name="map_hour" value="'.$_REQUEST['map_hour'].'" class="input_font" id="g" onkeyup="copyg()"></input> 查找到小时: <input type="input" name="map_hour2" value="'.$_REQUEST['map_hour2'].'" class="input_font" id="j" onkeyup="copyj()"></input></p>
+		<p>起始分: <input type="input" name="map_minute" value="'.$_REQUEST['map_minute'].'" class="input_font" id="h" onkeyup="copyh()"></input> 查找到分钟: <input type="input" name="map_minute2" value="'.$_REQUEST['map_minute2'].'" class="input_font" id="k" onkeyup="copyk()"></input></p>
+		<p>起始秒: <input type="input" name="map_second" value="'.$_REQUEST['map_second'].'" class="input_font" id="i" onkeyup="copyi()"></input> 查找到秒: <input type="input" name="map_second2" value="'.$_REQUEST['map_second2'].'" class="input_font" id="l" onkeyup="copyl()"></input></p>
+
+		<button type="submit" class="header_button" onclick="" style="text-align:flex;">查看所选范围</button>
+	</form>';
+	}
+
+	echo '<form action="map_dateReset.php" method="post" style="display:center; text-align:center;">';
+	echo '<p><button type="submit" class="header_button" onclick="" style="text-align:flex;">清除范围</button></p>';
+	echo '</form>';
 
 	try{
 		$user = "weicheng";
@@ -88,7 +123,7 @@
 					.setPopup(
 						new mapboxgl.Popup({ offset: 25 }) // add popups
 						.setHTML(
-			       `<h3>".$rows[$i]['date'].' '.$rows[$i]['time']."</h3><p>速度: ".$rows[$i]['speed']."</p><p>可能误差: ".$rows[$i]['drift']."</p><p>经度: ".$rows[$i]['latitude']."</p><p>纬度: ".$rows[$i]['longitude']."</p>`
+			       `<h3>".$rows[$i]['date'].' '.$rows[$i]['time']."</h3><p>时区: ".$rows[$i]['timezone']."</p><p>速度: ".$rows[$i]['speed']."</p><p>可能误差: ".$rows[$i]['drift']."</p><p>经度: ".$rows[$i]['latitude']."</p><p>纬度: ".$rows[$i]['longitude']."</p>`
 					)
 					)
 					.addTo(map);
@@ -152,6 +187,40 @@
 
 </body>
 
+<script>
+
+function fun(){
+        var date = new Date()
+        var y = date.getFullYear();
+        var m = date.getMonth()+1;
+        var d = date.getDate(); 
+        var hh = date.getHours();
+        var mm = date.getMinutes();
+        var ss = date.getSeconds();
+        if(hh <= 6 & hh >= 0){
+            var notice = "凌晨好，好梦."
+        }else if(hh > 6 & hh < 11){
+            var notice = "现在是早上或上午，抓紧时间做事情了."
+        }else if(hh >= 11  & hh <= 12){
+            var notice = "正在中午."
+        }else if(hh > 12 & hh <= 18){
+            var notice = "现在是下午."
+        }else if(hh >= 19 & hh <= 22){
+            var notice = "晚上来了."
+        }else if(hh > 22 & hh <= 23){
+            var notice = "晚安，好梦."
+        }else{
+            var notice = "Have a nice day."
+        }
+
+        document.getElementById("ymd").innerHTML = +y+"-"+m+"-"+d+" "+hh+":"+mm+":"+ss+" "+notice+"";
+        setTimeout("fun()",1000)
+    }
+
+    window.onload = function(){
+        setTimeout("fun()",0)
+    }
+</script>
 
 <!-- <style>
     #map {
