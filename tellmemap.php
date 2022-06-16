@@ -19,7 +19,7 @@
     }
 
 	echo '<div id="indicator"></div>';
-	echo '<div id="map"></div>';
+	echo '<div id="map" style="position: absolute; top: 0px; width: 100%; height: 600px;  border-radius: 20px; "></div>';
 	echo '<div id="placeholder" style="height:200px;"></div>';
 	echo '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>';
 	echo '<script type="text/javascript">';
@@ -91,7 +91,7 @@
 					.addTo(map);
 					coordinates[loopTime] = [".$rows[$i]['latitude'].", ".$rows[$i]['longitude']."];
 					loopTime ++;
-					
+
 					</script>
 			";
 			}
@@ -146,7 +146,7 @@
 </script>
 
 
-<style>
+<!-- <style>
     #map {
         position: absolute; 
         top: 0; 
@@ -161,4 +161,4 @@
         text-align: center;
     }
 
-</style>
+</style> -->
