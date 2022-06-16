@@ -63,6 +63,7 @@
 
 	if(isset($_COOKIE['map_hour'])){
 		$hour = $_COOKIE['map_hour'];
+		echo "<p>is set map_hour</p>";
 	}
 
 	if(isset($_COOKIE['map_minute'])){
