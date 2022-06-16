@@ -25,6 +25,7 @@
                 echo '<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">';
 
                 echo '<p class="narrator" style="font-size: large; text-align: center; color: purple">添加食材表</p>';
+                echo "<div style='display:center; text-align:center;'>";
                 echo "
                 <table border='1' style='display:center; text-align:center;'>
                     <tr>
@@ -61,6 +62,7 @@
                 ";
 
                 echo "</table>";
+                echo "<div>";
 
 
 
