@@ -52,6 +52,19 @@
 
             $sql = "
 
+            CREATE TABLE IF NOT EXISTS `food` ( 
+                `id` INT NOT NULL AUTO_INCREMENT , 
+                `name` TEXT NOT NULL , 
+                `cost` DOUBLE NOT NULL , 
+                `totalnum` INT NOT NULL DEFAULT 0, 
+                `usednum` INT NOT NULL DEFAULT 0,
+                `note` TEXT NULL , 
+                `status` TEXT NULL , 
+                `timeadded` DATETIME NOT NULL , 
+                `usedby` DATETIME NOT NULL , 
+                PRIMARY KEY (`id`)
+            );
+
             CREATE TABLE IF NOT EXISTS `location_store` ( 
                 `number` INT NOT NULL AUTO_INCREMENT , 
                 `longitude` DOUBLE NOT NULL , 
