@@ -128,6 +128,7 @@
 	}
 
 	echo'<p class="narrator" style="font-size: x-large; text-align: center; " id="status_indicator"></p>';
+	echo'<p class="narrator" style="font-size: x-large; text-align: center; " id="number_entries_indicator"></p>';
 
 	echo '<form action="map_dateReset.php" method="post" style="display:center; text-align:center;">';
 	echo '<p><button type="submit" class="header_button" onclick="" style="text-align:flex; margin-bottom:50px;">清除范围</button></p>';
@@ -182,6 +183,7 @@
 		$row_count = $stmt->rowCount();
 		$rows = $stmt->fetchAll();
 		echo "<script>console.log(".$row_count.")</script>";
+		echo '<script>document.getElementById("number_entries_indicator").innerHTML = "查询到 '.$row_count.' 条记录。"; </script>';
 
 		if($row_count == 0){
 			// echo'<p class="narrator" style="font-size: x-large; text-align: center;">查询条件/时间范围下并没有记录。</p>';
