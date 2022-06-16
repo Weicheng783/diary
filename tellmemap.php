@@ -183,7 +183,7 @@
 
 		if($row_count == 0){
 			// echo'<p class="narrator" style="font-size: x-large; text-align: center;">查询条件/时间范围下并没有记录。</p>';
-			echo '<script>document.getElementById("status_indicator").value = "查询条件/时间范围下并没有记录。"; </script>';
+			echo '<script>document.getElementById("status_indicator").innerHTML = "查询条件/时间范围下并没有记录。"; </script>';
 		}else{
 			for($i = 0; $i < $row_count; $i++){
 				// echo "<script>console.log(".$rows[$i]['longitude'].")</script>";
