@@ -19,7 +19,7 @@
     }
 
 	echo '<div id="indicator"></div>';
-	echo '<div id="map" style="position: absolute; top: 0px; width: 100%; height: 800px;  border-radius: 20px; "></div>';
+	echo '<div id="map" style="position: absolute; top: 0px; width: 100%; height: 80%;  border-radius: 20px; "></div>';
 	echo '<div id="placeholder" style="height:200px;"></div>';
 	echo '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>';
 	echo '<script type="text/javascript">';
