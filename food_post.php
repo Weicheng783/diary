@@ -47,7 +47,7 @@ try{
         $status = $_REQUEST['status'];
 
         if($name == ""){
-            echo "<script>alert('填写名称.');location.href='food.php';</script>";
+            echo "<script>alert('填写名称.');location.href='javascript:history.go(-1)';</script>";
             exit(0);
         }
 
