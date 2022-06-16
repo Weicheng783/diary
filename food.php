@@ -40,7 +40,7 @@
                     </tr>";
                 
                 echo"
-                    <form action='food_post.php' method='post' style='display:center; text-align:center;'>
+                    <form action='food_post.php' method='post' style='margin:auto'>
                     <tr>
                         <td><input class='input_font' name='name' value=''></input></td>
                         <td><input class='input_font' name='note' value=''></input></td>
