@@ -55,9 +55,10 @@
                             <option value='已丢弃'>已丢弃</option>
                             <option value='已退赠'>已退赠</option>
                         </select></td>
+                        <input type='hidden' name='request' value='submit'></input>
+                        <button type='submit' class='header_button' onclick=''>提交</button>
                     </tr>
-                    <input type='hidden' name='request' value='submit'></input>
-                    <button type='submit' class='header_button' onclick=''>提交</button>
+
                     </form>
                 ";
 
