@@ -127,11 +127,13 @@
 		// echo "<p>2logic</p>";
 	}
 
+	echo'<p class="narrator" style="font-size: x-large; text-align: center; " id="status_indicator"></p>';
+
 	echo '<form action="map_dateReset.php" method="post" style="display:center; text-align:center;">';
 	echo '<p><button type="submit" class="header_button" onclick="" style="text-align:flex; margin-bottom:50px;">清除范围</button></p>';
 	echo '</form>';
 
-	echo'<p class="narrator" style="font-size: x-large; text-align: center;" id="status_indicator"></p>';
+
 
 	echo '<div id="indicator"></div>';
 	echo '<div id="map" style="position: absolute; top: 0px; width: 100%; height: 80%; border-radius: 20px; border-width: 10px; border: solid; border-color: purple;"></div>';
