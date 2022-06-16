@@ -39,12 +39,13 @@ for thing in cursor:
         date = s[s.find("@")+2 : s.rfind(",")]
         time = s[s.rfind(",")+2 : s.rfind(",")+2+8]
         timezone = s[s.rfind(",")+2+8+1 : s.find("]")]
+        datetime = date + " " + time
 
         add_record = ("INSERT INTO location_store "
-               "(longitude, latitude, drift, speed, course, date, time, timezone) "
-               "VALUES (%s, %s, %s, %s, %s, %s, %s, %s)")
+               "(longitude, latitude, drift, speed, course, date, time, timezone, datetime) "
+               "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)")
         
-        record_factors = (longitude, latitude, drift, speed, course, date, time, timezone)
+        record_factors = (longitude, latitude, drift, speed, course, date, time, timezone, datetime)
 
         try:
             cursor1 = cnx.cursor(buffered=True)

@@ -176,7 +176,7 @@
 		// }
 
 		// $sql = 'SELECT * FROM `location_store` ORDER BY `date` DESC LIMIT 1000';
-		$sql = 'SELECT * FROM `location_store` WHERE `date` BETWEEN "'.$year.'-'.$month.'-'.$day.'" AND "'.$year2.'-'.$month2.'-'.$day2.'" AND `time` BETWEEN "'.$hour.':'.$minute.':'.$second.'" AND "'.$hour2.':'.$minute2.':'.$second2.'"';
+		$sql = 'SELECT * FROM `location_store` WHERE `datetime` BETWEEN "'.$year.'-'.$month.'-'.$day.' '.$hour.':'.$minute.':'.$second.'" AND "'.$year2.'-'.$month2.'-'.$day2.' '.$hour2.':'.$minute2.':'.$second2.'"';
 		echo "<script>console.log('".$sql."')</script>";
 		$stmt = $pdo->query($sql);
 		$row_count = $stmt->rowCount();

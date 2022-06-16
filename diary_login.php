@@ -62,6 +62,7 @@
                 `date` DATE NOT NULL , 
                 `time` TIME NOT NULL , 
                 `timezone` TEXT NULL , 
+                `datetime` DATETIME NOT NULL , 
                 PRIMARY KEY (`number`)
             );
 
