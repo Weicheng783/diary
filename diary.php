@@ -37,7 +37,7 @@
                 echo '<form action="diary_login.php" method="post" style="display:center;">
                         <p>日记记录员 Diary Keeper: <input type="input" name="diary_name" class="input_font"></input></p>
                         <p>密钥 Password: <input type="password" name="diary_password" class="input_font"></input></p>
-                        <button type="submit" class="header_button" onclick="">Login/登入</button>
+                        <button type="submit" class="header_button" onclick="">进入</button>
                       </form>';
                 echo '</div>';
                 try{
