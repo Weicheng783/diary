@@ -109,6 +109,8 @@
 			";
 		}
 
+		echo "</div>";
+
 	}catch(PDOException $e){
 		echo "<script>alert('目前无法连接到数据库.');</script>";
 	}
@@ -146,7 +148,7 @@
 
 </script>
 
-</div>
+
 
 <!-- <style>
     #map {
