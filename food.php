@@ -44,7 +44,7 @@
                     <tr>
                         <td><input class='input_font' name='name' value=''></input></td>
                         <td><input class='input_font' name='note' value=''></input></td>
-                        <td><input type='date' class='input_font' name='timeadded' value='".date('Y')."-".date('m')."-".date('d')." ".date('H').":".date('i').":".date('s')."'></input></td>
+                        <td><input type='datetime' class='input_font' name='timeadded' value='".date('Y')."-".date('m')."-".date('d')." ".date('H').":".date('i').":".date('s')."'></input></td>
                         <td><input type='date' class='input_font' name='usedby' value='".date('Y')."-".date('m')."-".date('d')."'></input></td>
                         <td><input class='input_font' name='totalnum' value=''></input></td>
                         <td><input class='input_font' name='usednum' value=''></input></td>
