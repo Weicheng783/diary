@@ -112,7 +112,7 @@
 
 		<button type="submit" class="header_button" onclick="" style="text-align:flex;">查看所选范围</button>
 	</form>';
-		echo "<p>走了1</p>";
+		// echo "<p>logic1</p>";
 	} else {
 		echo '<form action="map_setRange.php" method="post" style="display:center; text-align:center;" id="date">
 		<p>起始年: <input type="input" name="map_year" value="'.$_COOKIE['map_year'].'" class="input_font" id="a" onkeyup="copya()"></input> 查找到年份: <input type="input" name="map_year2" value="'.$_COOKIE['map_year2'].'" class="input_font" id="d" onkeyup="copyd()"></input></p>
@@ -124,7 +124,7 @@
 
 		<button type="submit" class="header_button" onclick="" style="text-align:flex;">查看所选范围</button>
 	</form>';
-		echo "<p>是2</p>";
+		// echo "<p>2logic</p>";
 	}
 
 	echo '<form action="map_dateReset.php" method="post" style="display:center; text-align:center;">';
@@ -181,6 +181,7 @@
 
 		if($row_count == 0){
 			echo'<p class="narrator" style="font-size: x-large; text-align: center;">查询条件/时间范围下并没有记录。</p>';
+			echo '<script>document.getElementById("map").style.width = 0+"px"; </script>';
 		}else{
 			for($i = 0; $i < $row_count; $i++){
 				// echo "<script>console.log(".$rows[$i]['longitude'].")</script>";
