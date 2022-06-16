@@ -61,7 +61,7 @@ try{
 
         echo "<script>console.log('".$sql."');</script>";
 
-        echo "<script>alert('食材加入成功.');location.href='food.php';</script>";
+        // echo "<script>alert('食材加入成功.');location.href='food.php';</script>";
     }
 
 }catch(PDOException $e){
