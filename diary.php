@@ -42,9 +42,9 @@
                 echo '</div>';
                 try{
                     $pdo = new pdo('mysql:host=localhost; dbname=diary', $GLOBALS['user'], $GLOBALS['password']);
-                    echo "<h3 style='text-align:center; color:green;'>Database Status Normal (3306). 数据库正常.</h3>";
+                    echo "<h3 style='text-align:center; color:green;'>Database Status Normal (port 3306). 数据库正常.</h3>";
                 }catch(PDOException $e){
-                    echo "<h3 style='text-align:center; color:red;'>Database Disconnected (3306). 数据库目前无法正常连接.</h3>";
+                    echo "<h3 style='text-align:center; color:red;'>Database Disconnected (port 3306). 数据库目前无法正常连接.</h3>";
                 }
             }else{
 
