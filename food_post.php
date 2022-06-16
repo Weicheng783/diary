@@ -48,13 +48,13 @@ try{
         $status = $_REQUEST['status'];
 
         if($name == ""){
-            echo "<script>alert('填写名称.');history.go(-1);</script>";
-            // exit(0);
+            echo "<script>alert('填写名称.');location.href='javascript:history.go(-1)';</script>";
+            exit(0);
         }
 
         if($cost == ""){
-            echo "<script>alert('填写成本.');history.go(-1);</script>";
-            // exit(0);
+            echo "<script>alert('填写成本.');location.href='javascript:history.go(-1)';</script>";
+            exit(0);
         }
 
         $sql = "INSERT INTO `food` (`name`, `note`, `timeadded`, `usedby`, `cost`, `totalnum`, `usednum`, `status`) VALUES ('".$name."', '".$note."', '".$timeadded."', '".$usedby."', '".$cost."', '".$totalnum."', '".$usednum."', '".$status."');";
