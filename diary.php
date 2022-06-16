@@ -32,7 +32,7 @@
             if (!isset($_COOKIE['diary_name'])){
                 echo '<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">';
                 echo '<div id="writingArea" style="text-align:center; border-style:dashed; border-width:3px; border-radius:5px; padding:5px; margin:5px;">';
-                echo "<p><strong>日记中心认证系统--赶紧登录鸭。</strong></p>";
+                echo "<p><strong>日记认证系统</strong></p>";
                 // echo "<p>在下方输入授权用户名和密码，并点击提交:</p>";
                 echo '<form action="diary_login.php" method="post" style="display:center;">
                         <p>日记记录员 Diary Keeper: <input type="input" name="diary_name" class="input_font"></input></p>
