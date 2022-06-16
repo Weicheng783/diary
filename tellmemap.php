@@ -101,7 +101,7 @@
 	echo "<hr />";
 
 
-	if(isset($_REQUEST['map_hour']) and $_REQUEST['map_hour'] != ""){
+	if(!isset($_COOKIE['map_hour']) or $_COOKIE['map_hour'] == ""){
 		echo '<form action="map_setRange.php" method="post" style="display:center; text-align:center;" id="date">
 		<p>起始年: <input type="input" name="map_year" value="'.$year.'" class="input_font" id="a" onkeyup="copya()"></input> 查找到年份: <input type="input" name="map_year2" value="'.$year.'" class="input_font" id="d" onkeyup="copyd()"></input></p>
 		<p>起始月: <input type="input" name="map_month" value="'.$month.'" class="input_font" id="b" onkeyup="copyb()"></input> 查找到月份: <input type="input" name="map_month2" value="'.$month.'" class="input_font" id="e" onkeyup="copye()"></input></p>
@@ -115,12 +115,12 @@
 		echo "<p>走了1</p>";
 	} else {
 		echo '<form action="map_setRange.php" method="post" style="display:center; text-align:center;" id="date">
-		<p>起始年: <input type="input" name="map_year" value="'.$_REQUEST['map_year'].'" class="input_font" id="a" onkeyup="copya()"></input> 查找到年份: <input type="input" name="map_year2" value="'.$_REQUEST['map_year2'].'" class="input_font" id="d" onkeyup="copyd()"></input></p>
-		<p>起始月: <input type="input" name="map_month" value="'.$_REQUEST['map_month'].'" class="input_font" id="b" onkeyup="copyb()"></input> 查找到月份: <input type="input" name="map_month2" value="'.$_REQUEST['map_month2'].'" class="input_font" id="e" onkeyup="copye()"></input></p>
-		<p>起始日: <input type="input" name="map_day" value="'.$_REQUEST['map_day'].'" class="input_font" id="c" onkeyup="copyc()"></input> 查找到日: <input type="input" name="map_date2" value="'.$_REQUEST['map_day2'].'" class="input_font" id="f" onkeyup="copyf()"></input></p>
-		<p>起始时: <input type="input" name="map_hour" value="'.$_REQUEST['map_hour'].'" class="input_font" id="g" onkeyup="copyg()"></input> 查找到小时: <input type="input" name="map_hour2" value="'.$_REQUEST['map_hour2'].'" class="input_font" id="j" onkeyup="copyj()"></input></p>
-		<p>起始分: <input type="input" name="map_minute" value="'.$_REQUEST['map_minute'].'" class="input_font" id="h" onkeyup="copyh()"></input> 查找到分钟: <input type="input" name="map_minute2" value="'.$_REQUEST['map_minute2'].'" class="input_font" id="k" onkeyup="copyk()"></input></p>
-		<p>起始秒: <input type="input" name="map_second" value="'.$_REQUEST['map_second'].'" class="input_font" id="i" onkeyup="copyi()"></input> 查找到秒: <input type="input" name="map_second2" value="'.$_REQUEST['map_second2'].'" class="input_font" id="l" onkeyup="copyl()"></input></p>
+		<p>起始年: <input type="input" name="map_year" value="'.$_COOKIE['map_year'].'" class="input_font" id="a" onkeyup="copya()"></input> 查找到年份: <input type="input" name="map_year2" value="'.$_COOKIE['map_year2'].'" class="input_font" id="d" onkeyup="copyd()"></input></p>
+		<p>起始月: <input type="input" name="map_month" value="'.$_COOKIE['map_month'].'" class="input_font" id="b" onkeyup="copyb()"></input> 查找到月份: <input type="input" name="map_month2" value="'.$_COOKIE['map_month2'].'" class="input_font" id="e" onkeyup="copye()"></input></p>
+		<p>起始日: <input type="input" name="map_day" value="'.$_COOKIE['map_day'].'" class="input_font" id="c" onkeyup="copyc()"></input> 查找到日: <input type="input" name="map_date2" value="'.$_COOKIE['map_day2'].'" class="input_font" id="f" onkeyup="copyf()"></input></p>
+		<p>起始时: <input type="input" name="map_hour" value="'.$_COOKIE['map_hour'].'" class="input_font" id="g" onkeyup="copyg()"></input> 查找到小时: <input type="input" name="map_hour2" value="'.$_COOKIE['map_hour2'].'" class="input_font" id="j" onkeyup="copyj()"></input></p>
+		<p>起始分: <input type="input" name="map_minute" value="'.$_COOKIE['map_minute'].'" class="input_font" id="h" onkeyup="copyh()"></input> 查找到分钟: <input type="input" name="map_minute2" value="'.$_COOKIE['map_minute2'].'" class="input_font" id="k" onkeyup="copyk()"></input></p>
+		<p>起始秒: <input type="input" name="map_second" value="'.$_COOKIE['map_second'].'" class="input_font" id="i" onkeyup="copyi()"></input> 查找到秒: <input type="input" name="map_second2" value="'.$_COOKIE['map_second2'].'" class="input_font" id="l" onkeyup="copyl()"></input></p>
 
 		<button type="submit" class="header_button" onclick="" style="text-align:flex;">查看所选范围</button>
 	</form>';
