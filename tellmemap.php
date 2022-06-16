@@ -29,6 +29,39 @@
     }
 	echo "<div style='background-color: antiquewhite;'>";
 
+	$year = date('Y');
+	$month = date('m');
+	$day = date('d');
+	$hour = date('H');
+	$minute = date('i');
+	$second = date('s');
+
+	echo '<form action="diary_reset.php" method="post" style="display:center; text-align:center;">';
+	echo '<p><button type="submit" class="header_button" onclick="" style="text-align:flex;">清除已登录状态</button></p>';
+	echo '</form>';
+
+	// echo '<p style="text-align:center;"><a href="showMap.php" class="header_button"><button type="button" class="header_button">当日活点轨迹地图(测试中)</button></a></p>';
+
+	// if(isset($_COOKIE['diary_year'])){
+	// 	$year = $_COOKIE['diary_year'];
+	// }
+
+	// if(isset($_COOKIE['diary_month'])){
+	// 	$month = $_COOKIE['diary_month'];
+	// }
+
+	// if(isset($_COOKIE['diary_day'])){
+	// 	$day = $_COOKIE['diary_day'];
+	// }
+
+	// if(isset($_COOKIE['diary_work'])){
+	// 	$work = $_COOKIE['diary_work'];
+	// }else{
+	// 	$work = "";
+	// }
+
+	echo "<hr />";
+
 
 	if(!isset($_REQUEST['map_hour']) or $_REQUEST['map_hour'] == ""){
 		echo '<form action="map_setRange.php" method="post" style="display:center; text-align:center;" id="date">
