@@ -32,14 +32,12 @@ try{
         }
 
         $sql = "INSERT INTO `food` (`name`, `note`, `timeadded`, `usedby`, `cost`, `totalnum`, `usednum`, `status`) VALUES ('".$name."', '".$note."', '".$timeadded."', '".$usedby."', '".$cost."', '".$totalnum."', '".$usednum."', '".$status."');";
-        echo "<script>console.log('".$sql."');</script>";
         $pdo->query($sql);
 
-        
-
-        // echo "<script>alert('食材加入成功.');location.href='food.php';</script>";
+        echo "<script>alert('食材 ".$name." 加入成功.');location.href='food.php';</script>";
 
     }elseif ($request == "update") {
+        $id = $_REQUEST['id'];
         $name = $_REQUEST['name'];
         $note = $_REQUEST['note'];
         $timeadded = $_REQUEST['timeadded'];
@@ -59,16 +57,16 @@ try{
             exit(0);
         }
 
-        $sql = "INSERT INTO `food` (`name`, `note`, `timeadded`, `usedby`, `cost`, `totalnum`, `usednum`, `status`) VALUES ('".$name."', '".$note."', '".$timeadded."', '".$usedby."', '".$cost."', '".$totalnum."', '".$usednum."', '".$status."');";
+        $sql = "UPDATE `food` SET `name`='".$name."', `note`='".$note."', `timeadded`='".$timeadded."', `usedby`='".$usedby."', `cost`='".$cost."', `totalnum`='".$totalnum."', `usednum`='".$usednum."', `status`='".$status."' WHERE `id`='".$id."';";
         $pdo->query($sql);
 
-        echo "<script>console.log('".$sql."');</script>";
+        // echo "<script>console.log('".$sql."');</script>";
 
-        // echo "<script>alert('食材加入成功.');location.href='food.php';</script>";
+        echo "<script>alert('食材 ".$name." 更新成功.');location.href='food.php';</script>";
     }
 
 }catch(PDOException $e){
-    echo "<script>alert('数据未加入总表, 请重试。');location.href='food.php';</script>";
+    echo "<script>alert('数据未加入总表, 请返回重试。');</script>";
 }
 
 ?>

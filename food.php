@@ -110,8 +110,8 @@
                                     <tr>
                                         <td><input class='input_font' name='name' value='".$rows[$i]['name']."'></input></td>
                                         <td><input class='input_font' name='note' value='".$rows[$i]['note']."'></input></td>
-                                        <td><input type='date' class='input_font' name='timeadded' value='".$rows[$i]['timeadded']."'></input></td>
-                                        <td><input type='date' class='input_font' name='usedby' value='".$rows[$i]['usedby']."'></input></td>
+                                        <td><input type='datetime' class='input_font' name='timeadded' value='".$rows[$i]['timeadded']."'></input></td>
+                                        <td><input type='datetime' class='input_font' name='usedby' value='".$rows[$i]['usedby']."'></input></td>
                                         <td><input class='input_font' name='totalnum' value='".$rows[$i]['totalnum']."'></input></td>
                                         <td><input class='input_font' name='usednum' value='".$rows[$i]['usednum']."'></input></td>
                                         <td><input class='input_font' name='cost' value='".$rows[$i]['cost']."'></input></td>
@@ -124,7 +124,7 @@
                                     </tr>
                                     <input type='hidden' name='id' value='".$rows[$i]['id']."'></input>
                                     <input type='hidden' name='request' value='update'></input>
-                                    <button type='submit' class='header_button' onclick=''>更改</button>
+                                    <button type='submit' class='header_button' onclick=''>更改'".$rows[$i]['name']."'</button>
                                     </form>
                                 ";
                             }
