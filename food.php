@@ -26,7 +26,7 @@
 
                 echo '<p class="narrator" style="font-size: large; text-align: center; color: purple">添加食材表</p>';
                 echo "
-                <table border='1'>
+                <table border='1' style='display:center; text-align:center;'>
                     <tr>
                         <th>食材</th>
                         <th>注解</th>
@@ -56,7 +56,7 @@
                         </select></td>
                     </tr>
                     <input type='hidden' name='request' value='submit'></input>
-                    <button type='submit' class='header_button' onclick='' style='text-align:flex;'>提交</button>
+                    <button type='submit' class='header_button' onclick=''>提交</button>
                     </form>
                 ";
 
@@ -121,7 +121,7 @@
                                     </tr>
                                     <input type='hidden' name='id' value='".$rows[$i]['id']."'></input>
                                     <input type='hidden' name='request' value='update'></input>
-                                    <button type='submit' class='header_button' onclick='' style='text-align:flex;'>更改</button>
+                                    <button type='submit' class='header_button' onclick=''>更改</button>
                                     </form>
                                 ";
                             }
@@ -218,7 +218,7 @@ function fun(){
     }
 </script>
 
-<script>
+<!-- <script>
 //按键触发
 document.getElementById("work").onkeydown = function(){
     //ctrl+s引导为内保存
@@ -229,7 +229,7 @@ document.getElementById("work").onkeydown = function(){
         return false;
     }
 }
-</script>
+</script> -->
 
 <style>
     img:focus {
