@@ -1,6 +1,5 @@
 <?php
 header("Content-type:text/html;charset=utf-8");
-header(location:getenv("HTTP_REFERER"));
 
 try{
     $dsn="mysql:host=localhost; dbname=diary";
@@ -48,12 +47,12 @@ try{
         $status = $_REQUEST['status'];
 
         if($name == ""){
-            echo "<script>alert('填写名称.');location.href='javascript:history.go(-1)';</script>";
+            echo "<script>alert('请返回填写名称.');</script>";
             exit(0);
         }
 
         if($cost == ""){
-            echo "<script>alert('填写成本.');location.href='javascript:history.go(-1)';</script>";
+            echo "<script>alert('请返回填写成本.');</script>";
             exit(0);
         }
 
