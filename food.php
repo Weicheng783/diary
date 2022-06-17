@@ -29,7 +29,7 @@
             // 当前日期
             $defaultDate = date("Y-m-d");
             //$first =1 表示每周星期一为开始日期 0表示每周日为开始日期
-            $first=1;
+            $first=0;
             //获取当前周的第几天 周日是 0 周一到周六是 1 - 6
             $w=date('w',strtotime($sdefaultDate));
             //获取本周开始日期，如果$w是0，则表示周日，减去 6 天
@@ -47,9 +47,9 @@
             $row_count = $stmt->rowCount();
             $rows = $stmt->fetchAll();
 
-            // if($w == "0"){
-            //     $w = "7";
-            // }
+            if($w == "0"){
+                $w = "7";
+            }
 
             for($i=0; $i<$row_count; $i++){
                 echo '<p class="narrator" style="font-size: x-large; text-align: center; color: orange">本周('.$week_start.' - '.$week_end.')，总成本 <strong>'.$rows[$i]['SUM(`cost`)'].'</strong> 英镑，注意节约。今天是本周的第 '.$w.' 天。</p>';
