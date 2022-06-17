@@ -47,6 +47,8 @@
             $row_count = $stmt->rowCount();
             $rows = $stmt->fetchAll();
 
+            $w += 1;
+
             if($w == "0"){
                 $w = "7";
             }
