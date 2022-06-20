@@ -48,10 +48,10 @@
             $row_count = $stmt->rowCount();
             $rows = $stmt->fetchAll();
 
-            $w += 1;
+            $d += 1;
 
-            if($w == "0"){
-                $w = "7";
+            if($d == "0" || $d == "00"){
+                $d = "7";
             }
 
             for($i=0; $i<$row_count; $i++){
