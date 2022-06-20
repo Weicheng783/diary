@@ -31,10 +31,10 @@
             //$first =1 表示每周星期一为开始日期 0表示每周日为开始日期
             $first=1;
             //获取当前周的第几天 周日是 0 周一到周六是 1 - 6
-            $w=date('d',strtotime($sdefaultDate));
-            //获取本周开始日期，如果$w是0，则表示周日，减去 6 天
-            $week_start=date('Y-m-d',strtotime("$defaultDate -".($w ? $w - $first : 6).' days'));
-            echo "<script>console.log('".$w."')</script>";
+            $d=date('d',strtotime($sdefaultDate));
+            //获取本周开始日期
+            $week_start=date('Y-m-d',strtotime("$defaultDate -".($d).' days'));
+            echo "<script>console.log('".$d."')</script>";
             //本周结束日期
             $week_end=date('Y-m-d',strtotime("$week_start +6 days"));
 
