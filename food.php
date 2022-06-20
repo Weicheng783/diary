@@ -34,7 +34,7 @@
             $d=date('d',strtotime($sdefaultDate));
             //获取本周开始日期
             $week_start=date('Y-m-d',strtotime("$defaultDate -".($d).' days'));
-            echo "<script>console.log('".$d."')</script>";
+            // echo "<script>console.log('".$d."')</script>";
             //本周结束日期
             $week_end=date('Y-m-d',strtotime("$week_start +6 days"));
 
@@ -49,10 +49,6 @@
             $rows = $stmt->fetchAll();
 
             $d += 1;
-
-            if($d == "0" || $d == "00"){
-                $d = "7";
-            }
 
             for($i=0; $i<$row_count; $i++){
                 echo '<p class="narrator" style="font-size: x-large; text-align: center; color: orange">本周('.$week_start.' - '.$week_end.')，总成本 <strong>'.$rows[$i]['SUM(`cost`)'].'</strong> 英镑，注意节约。今天是本周的第 '.$d.' 天。</p>';
