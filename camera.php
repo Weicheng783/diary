@@ -38,7 +38,7 @@
                 $contents = ftp_nlist($ftp_connection, ".");
 
                 foreach ($contents as $filename) {
-                    $filename = substr($filename, 15);
+                    // $filename = substr($filename, 15);
                     echo "<a href='http://132.145.74.19/camera/".$filename."' style='text-align:center;'>".$filename."</a>\n";
                     echo $filename;
                 }
