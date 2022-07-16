@@ -15,39 +15,39 @@
         <p class="narrator" style="font-size: x-large; text-align: center;">在下方选择你要看的时间段</p>
 
         <?php
-            // foreach (glob("/camera_video/*.*") as $filename) {
-            //     echo "$filename size " . filesize($filename) . "\n";
-            // }
+            foreach (glob("/var/www/html/camera/*") as $filename) {
+                echo "$filename" . "\n";
+            }
         ?>
 
         <?php
             // Connect to FTP server
-            $ftp_server = "132.145.74.19";
+            // $ftp_server = "132.145.74.19";
 
-            // Establish ftp connection
-            $ftp_connection = ftp_connect($ftp_server, 21);
+            // // Establish ftp connection
+            // $ftp_connection = ftp_connect($ftp_server, 21);
 
-            // Port number 21 is used as second parameter
-            // in the function ftp_connect()
-            if( $ftp_connection ) {
-                echo "<p style='text-align:center;'>ftp文件服务器正常!</p>";
+            // // Port number 21 is used as second parameter
+            // // in the function ftp_connect()
+            // if( $ftp_connection ) {
+            //     echo "<p style='text-align:center;'>ftp文件服务器正常!</p>";
 
-                $login = ftp_login($ftp_connection, "weicheng", "awc020826");
-                // echo $login;
-                // get contents of the root directory
-                $contents = ftp_nlist($ftp_connection, ".");
+            //     $login = ftp_login($ftp_connection, "weicheng", "awc020826");
+            //     // echo $login;
+            //     // get contents of the root directory
+            //     $contents = ftp_nlist($ftp_connection, ".");
 
-                foreach ($contents as $filename) {
-                    // $filename = substr($filename, 15);
-                    echo "<a href='http://132.145.74.19/camera/".$filename."' style='text-align:center;'>".$filename."</a>\n";
-                    echo $filename;
-                }
+            //     foreach ($contents as $filename) {
+            //         // $filename = substr($filename, 15);
+            //         echo "<a href='http://132.145.74.19/camera/".$filename."' style='text-align:center;'>".$filename."</a>\n";
+            //         echo $filename;
+            //     }
                 
-                // Closing connection
-                ftp_close( $ftp_connection );
-            }else{
-                echo "<p style='text-align:center;'>此时无法连接到ftp文件服务器： $ftp_server</p>";
-            }
+            //     // Closing connection
+            //     ftp_close( $ftp_connection );
+            // }else{
+            //     echo "<p style='text-align:center;'>此时无法连接到ftp文件服务器： $ftp_server</p>";
+            // }
         ?>
 
 
