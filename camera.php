@@ -35,7 +35,7 @@
                 $login = ftp_login($ftp_connection, "weicheng", "awc020826");
                 // echo $login;
                 // get contents of the root directory
-                $contents = ftp_nlist($ftp_connection, "/home/weicheng/");
+                $contents = ftp_nlist($ftp_connection, ".");
 
                 foreach ($contents as $filename) {
                     $filename = substr($filename, 15);
