@@ -17,7 +17,7 @@
         <?php
             foreach (glob("/var/www/html/camera/*") as $filename) {
                 $filename = substr($filename, 21);
-                echo "<a href='http://132.145.74.19/camera/".$filename."' style='text-align:center;'>".$filename."</a>\n";
+                echo "<p style='text-align:center; font-size: large;'><a href='http://132.145.74.19/camera/".$filename."' style='text-align:center;'>".$filename."</a></p>";
             }
         ?>
 
