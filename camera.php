@@ -11,6 +11,7 @@
 
         <div id='header_group' style="display:block; text-align: center;"></div>
 
+        <p class="narrator" style="font-size: x-large; text-align: center;">录像中心</p>
         <p class="narrator" style="font-size: x-large; text-align: center; " id="ymd"></p>
         <p class="narrator" style="font-size: x-large; text-align: center;">在下方选择你要看的时间段</p>
 
