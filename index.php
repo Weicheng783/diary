@@ -25,6 +25,9 @@
               <p class="narrator"><button type="submit" class="header_button" onclick="">Go Back to Quiz page</button></p>
             </form> -->
     <?php
+        // THIS PROGRAM WILL BE REDIRECT TO THE DIARY MAIN PAGE
+        echo "<script>location.href='diary.php';</script>";
+
         header("Content-Type: text/html; charset=utf-8");
             if (!isset($_COOKIE['name'])){
                 echo '<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">';

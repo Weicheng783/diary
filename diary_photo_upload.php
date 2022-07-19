@@ -25,15 +25,15 @@ if (!isset($_COOKIE['diary_name'])){
     exit(0);
 }
 
-    $dest_folder = "/home/ubuntu/gallery/";   //上传图片保存的路径 图片放在跟你upload.php同级的picture文件夹里
-    $arr = array();   //定义一个数组存放上传图片的名称方便你以后会用的。
+    $dest_folder = "../gallery/";   //上传图片保存的路径
+    $arr = array();   //定义一个数组存放上传图片的名称方便以后用
     $count = 0;
     if (!file_exists($dest_folder)) {
         if(!mkdir($dest_folder, 0777, true)){
             echo "dest_folder not created. please check.";
             echo "And do not forget to issue: sudo chmod -R 777 gallery.";
             echo "And do softlink to allow external access.";
-        } // 创建文件夹，并给予最高权限
+        } // 创建文件夹，并赋最高权限
     }
 
    $tp = array("", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "image/bmp", "image/jpg", "image/gif", "image/pjpeg", "image/jpeg", "image/png", "application/pdf",'application/msword','application/vnd.openxmlformats-officedocument.presentationml.presentation');    //检查上传文件是否在允许上传的类型
@@ -88,20 +88,28 @@ if (!isset($_COOKIE['diary_name'])){
                 $source_id = $_REQUEST['source_id'];
 
                 $source_id += $key;
-            
-                $sql = "INSERT INTO `gallery` (`diary_id`, `source_id`, `address`) VALUES ('".$diary_id."', '".$source_id."', 'http://150.230.127.102/diary/gallery/".$name."');";
+
+                $sql = "INSERT INTO `gallery` (`diary_id`, `source_id`, `uuid`, `address`, `address2`) VALUES ('".$diary_id."', '".$source_id."', '".$name."', 'http://localhost:8026/gallery/".$name."', 'http://132.145.74.19/gallery/".$name."');";
                 $pdo->query($sql);
             
             }catch(PDOException $e){
-                echo "<script>alert('有数据段未被插入总表，请重试.');location.href='diary.php';</script>";
+                echo "<script>alert('有数据段未被插入总表，请重试.');location.href='diary_edit.php';</script>";
             }
             $arr[$count] = $uploadfile;
             echo $uploadfile . "<br />";
+
             $count++;
+        }else{
+            echo "<script>alert('文件读取时出错，请重试.');</script>";
         }
     }
-    echo "总共" . $count . "文件;";
-    echo "<script>alert('总共 ".$count." 个文件 插入和上传成功.');location.href='diary.php';</script>";
+    if($count == 0){
+        echo "<script>alert('没有上传成功诶，或者你没有上传文件。');location.href='diary_edit.php';</script>";
+    }else{
+        echo "<script>alert('总共 ".$count." 个文件 插入和上传成功.');location.href='diary_edit.php';</script>";
+    }
+
+    // echo "总共" . $count . "文件;";
     // echo "数据插入和上传成功！";
     // echo "<a href='diary.php'><button></button></a>";
 ?>

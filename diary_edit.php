@@ -24,8 +24,11 @@
 <!--             <form action="create.php" method="post" style="text-align:center; display:center;">
               <p class="narrator"><button type="submit" class="header_button" onclick="">Go Back to Quiz page</button></p>
             </form> -->
-            <p style="text-align: center;"><button type="submit" class="header_button" onclick="location.href='diary_edit.php'" style="text-align: center;">写新记录</button></p>
+            <p style="text-align: center;"><button type="submit" class="header_button" onclick="location.href='diary.php'" style="text-align: center;">回到主页面</button></p>
+
     <?php
+        header("Content-type:text/html;charset=utf-8");
+        
         $user = "weicheng";
         $password = "awc020826";
 
@@ -33,7 +36,7 @@
             if (!isset($_COOKIE['diary_name'])){
                 echo '<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">';
                 echo '<div id="writingArea" style="text-align:center; border-style:dashed; border-width:3px; border-radius:5px; padding:5px; margin:5px;">';
-                echo "<p><strong>日记认证系统</strong></p>";
+                echo "<p><strong>日记认证系统-更改页面</strong></p>";
                 // echo "<p>在下方输入授权用户名和密码，并点击提交:</p>";
                 echo '<form action="diary_login.php" method="post" style="display:center;">
                         <p>日记记录员 Diary Keeper: <input type="input" name="diary_name" class="input_font"></input></p>
@@ -50,6 +53,18 @@
             }else{
 
                 echo '<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">';
+
+                // Direct jumping
+                if(!isset($_REQUEST['search_index']) or $_REQUEST['search_index'] == ""){
+                    // do nothing
+                }else{
+                    // echo "<script>location.href='diary_edit.php#search_index';</script>";
+                    setcookie("target", "" , time());
+                    setcookie("target", $_REQUEST['search_index'] , 2147483647);
+                    // sleep(1);
+                    // header("Refresh:0; url=page2.php");
+                    header("Refresh:0");
+                }
 
                 $year = date('Y');
                 $month = date('m');
@@ -79,15 +94,163 @@
                     $work = "";
                 }
 
+                echo "<hr />";
+
+                try{
+
+                    $pdo = new pdo('mysql:host=localhost; dbname=diary', $GLOBALS['user'], $GLOBALS['password']);
+                    $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+
+                    $sql = 'SELECT * FROM `temporaryWork` ORDER BY `time` DESC LIMIT 0,1';
+
+                    $stmt = $pdo->query($sql);
+                    $row_count = $stmt->rowCount();
+                    $rows = $stmt->fetchAll();
+
+                    if($row_count == 0){
+                        // echo "rowcount=0";
+                        echo '<p class="narrator" style="font-size: large; text-align: center; color: purple">没有找到历史保存记录，请及时保存工作。</p>';
+                    }else{
+                        echo '<p class="narrator" style="font-size: large; text-align: center; color: purple" id="server_saved_time"></p>';
+                        echo "<script>document.getElementById('server_saved_time').innerHTML = '最近一次保存于: ' + '".$rows[0]['time']."' + ', 请及时保存工作。';</script>";
+                        if(!isset($_COOKIE['diary_work_preference'])){
+                            $work = $rows[0]['content'];
+                            // print_r($work);
+                            setcookie("diary_work", "", time());
+                            setcookie("diary_work", $rows[0]['content'], time()+7200);
+                        }
+                    }
+
+                }catch(PDOException $e){
+                    
+                }
+
+                // print_r($work);
+                // TODO TODO TODO TODO TODO
+                // exit(0);
+                echo '<form action="diary_save.php" method="post" style="display:center; text-align:center;" id="savework">
+                <textarea style="display:none; width:0%; height:0%; text-align:left; font-size: 0px;" name="content" rows="0" placeholder="#说说你的日常叭" class="input_font" onkeyup="saveWork()" id="work1">'.$work.'</textarea>
+                </form>';
+
+                $sql = 'SELECT diary_id FROM `diary` ORDER BY `time` DESC LIMIT 0,1';
+                if(@$pdo != NULL){
+                    $stmt = $pdo->query($sql);
+                    $rows = $stmt->fetchAll();
+                }else{
+                    echo "<p>目前数据库无法连接，在离线模式下请尽快保存重要文件，并快速登出。</p>";
+                    echo "<p>你最后编辑自动保存的内容是：".$_COOKIE['diary_work']."</p>";
+                    die;
+                }
+
+                if($rows != NULL){
+                    $count = $rows[0]['diary_id'];
+                    $count += 1;
+                }else{
+                    $count = 1;
+
+                    // We have the responsibility to reset the auto_increment to 1
+                    $sql = 'ALTER TABLE `diary` AUTO_INCREMENT = 1';
+                    if($pdo != NULL){
+                        $pdo->query($sql);
+                    }
+
+                }
+
+                $sql = 'SELECT * FROM `gallery`';
+
+                if($pdo != NULL){
+                    $stmt = $pdo->query($sql);
+                    $count_gallery = $stmt->rowCount();
+                    $count_gallery += 1;
+                }
+
+
+
+
+                echo '<p class="narrator" style="font-size: large; text-align: center; color: purple">当前在写第 '.$count.' 条记录.</p>';
+
+                echo '<form action="diary_post.php" method="post" style="display:center; text-align:center;" id="date">
+                        <button type="submit" class="header_button" onclick="" style="text-align:flex;" form="savework">保存</button>
+                        <p><textarea style="width:80%; text-align:left; font-size: 20px;" name="content" rows="6" placeholder="#开始记录生活" class="input_font" onkeyup="saveWork()" id="work">'.$work.'</textarea></p>
+                        <input type="hidden" name="status" value="normal" class="input_font"</input>
+                        <button type="submit" class="header_button" onclick="" style="text-align:flex;">记录</button>
+                      </form>';
+                
+                echo '<form action="diary_photo_upload.php" name="form" method="post" enctype="multipart/form-data" style="font-size: large; text-align: center; color: purple">  
+                        图片上传: <input type="file" multiple name="uploads[]" />
+                        <input type="submit" name="submit" value="上传" />';
+                echo '<input type="hidden" name="diary_id" value="'.$count.'" class="input_font">';
+                echo '<input type="hidden" name="source_id" value="'.$count_gallery.'" class="input_font">';
+                echo '</form>';
+
+                echo '<form action="diary_photo_unlink.php" name="form" method="post" enctype="multipart/form-data" style="font-size: large; text-align: center; color: purple">  
+                图片取消连接序号(source_id from 1): <input type="hidden" name="diary_id" value="'.$count.'" class="input_font">
+                <input type="number" name="source_id" id="unlink_editor"/>
+                <input type="submit" name="submit" value="取消连接(数据库条目删除)" />';
+                echo '</form>';
+
+                // BEGIN: PICTURE SHOWING
+                $sql = 'SELECT * FROM `gallery` WHERE `diary_id` = "'.$count.'"';
+                $stmt = $pdo->query($sql);
+                $row_count = $stmt->rowCount();
+                $rows = $stmt->fetchAll();
+                if(!$row_count == 0){
+                    for($i=0; $i<$row_count; $i++){
+                        if(substr($rows[$i]['address'], -3, -1) != "mp4" && substr($rows[$i]['address'], -3, -1) != "avi" && substr($rows[$i]['address'], -3, -1) != "ogg" && substr($rows[$i]['address'], -3, -1) != "mov"){
+                            // We can show pictures then
+                            echo '<img src="'.$rows[$i]['address'].'" alt="'.$rows[$i]['address'].'" width="200" height="200" style="border-radius:5px; margin:2px; " id="'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'" tabindex="0"></img>';
+                            echo '<img src="'.$rows[$i]['address2'].'" alt="'.$rows[$i]['address2'].'" width="200" height="200" style="border-radius:5px; margin:2px; " id="'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'_alt" tabindex="0"></img>';
+                            echo '<script>
+                                    document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").onclick = function(){
+                                        document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.width = 200; 
+                                        document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.height = 200; 
+
+                                        document.getElementById("unlink_editor").value = '.$rows[$i]['source_id'].'; 
+                                    }
+
+                                    document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").ondblclick = function(){
+                                        document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.width = getWidth()-15; 
+                                        document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'").style.height = getHeight()*0.4; 
+                                    }
+                                </script>';
+
+                            echo '<script>
+                                document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'_alt").onclick = function(){
+                                    document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'_alt").style.width = 200; 
+                                    document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'_alt").style.height = 200; 
+
+                                    document.getElementById("unlink_editor").value = '.$rows[$i]['source_id'].'; 
+                                }
+
+                                document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'_alt").ondblclick = function(){
+                                    document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'_alt").style.width = getWidth()-15; 
+                                    document.getElementById("'.$rows[$i]['diary_id'].'_'.$rows[$i]['source_id'].'_alt").style.height = getHeight()*0.4; 
+                                }
+                            </script>';
+                        }else{
+                            echo '<video width="200" height="200" controls>';
+                            //width="320" height="240"
+                            echo '<source src="'.$rows[$i]['address'].'" type="video/mp4" >';
+                            echo 'Your browser does not support the video tag.</video>';
+
+                            echo '<video width="200" height="200" controls>';
+                            //width="320" height="240"
+                            echo '<source src="'.$rows[$i]['address2'].'" type="video/mp4" >';
+                            echo 'Your browser does not support the video tag.</video>';
+                        }
+
+                    }
+                }
+                // END: PICTURE SHOWING
+
+                echo "<hr />";
+
                 //<button type="submit" class="header_button" onclick="" style="text-align:flex;" form="view" disabled="disabled">查看当日PDF大文档[功能已淘汰]</button>
 
-                // start: 查看某一天功能暂时中止 20220718
-                // echo '<form action="diary_setDate.php" method="post" style="display:center; text-align:center;" id="date">
-                //         <p>年: <input type="input" name="diary_year" value="'.$year.'" class="input_font" id="a" onkeyup="copya()"></input></p>
-                //         <p>月: <input type="input" name="diary_month" value="'.$month.'" class="input_font" id="b" onkeyup="copyb()"></input></p>
-                //         <p>日: <input type="input" name="diary_day" value="'.$day.'" class="input_font" id="c" onkeyup="copyc()"></input></p>
-                //         <button type="submit" class="header_button" onclick="" style="text-align:flex;">查看这一天(默认今天)</button>
-                //       </form>';
+                echo '<form action="diary_setEditTarget.php" method="post" style="display:center; text-align:center;" id="date2">
+                        <p>序号: <input type="input" name="target" class="input_font" id="search_index"></input></p>
+                        <button type="submit" class="header_button" onclick="" style="text-align:flex;">检索</button>
+                      </form>';
 
                 // echo '<form action="diary_dateReset.php" method="post" style="display:center; text-align:center;">';
                 // echo '<p><button type="submit" class="header_button" onclick="" style="text-align:flex;">回到今天</button></p>';
@@ -96,13 +259,12 @@
                 // echo '<form action="diary_seeAll.php" method="post" style="display:center; text-align:center;">';
                 // echo '<p><button type="submit" class="header_button" onclick="" style="text-align:flex;">分批查看所有</button></p>';
                 // echo '</form>';
-                // end
-
                 // echo '<form action="viewPDF.php" method="post" style="display:center; text-align:center;" id="view">';
                 // echo '<input type="hidden" name="year" value="'.$year.'" class="input_font" id="aa"></input>
                 // <input type="hidden" name="month" value="'.$month.'" class="input_font" id="bb"></input>
                 // <input type="hidden" name="day" value="'.$day.'" class="input_font" id="cc"></input>';
                 // echo '</form>';
+
 
                 // We fetch data from Data Base
                 try{
@@ -111,41 +273,46 @@
                     $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
                     // Last Registered diary First
-                    // if(!isset($_COOKIE['diary_date'])){
-                    //     $sql = 'SELECT * FROM `diary` WHERE `time` LIKE CONCAT(CURDATE(),"%") ORDER BY `time` DESC';
-                    // }else{
-                    //     $sql = 'SELECT * FROM `diary` WHERE `time` LIKE CONCAT("'.$_COOKIE['diary_date'].'","%") ORDER BY `time` DESC';
-                    // }
-
-                    // if(isset($_COOKIE['diary_seeall'])){
-                    //     $sql = 'SELECT * FROM `diary` ORDER BY `time` DESC LIMIT 0,20';
-                    // }
-
-                    $sql = 'SELECT * FROM `diary` ORDER BY `time` DESC';
+                    if(!isset($_COOKIE['target'])){
+                        $sql = 'SELECT * FROM `diary` ORDER BY `time` DESC LIMIT 0,1';
+                    }else{
+                        $sql = 'SELECT * FROM `diary` WHERE `diary_id` = "'.$_COOKIE['target'].'" ORDER BY `time` DESC';
+                    }
 
                     $stmt = $pdo->query($sql);
                     $row_count = $stmt->rowCount();
                     $rows = $stmt->fetchAll();
 
                     if($row_count == 0){
-                        echo'<p class="narrator" style="font-size: x-large; text-align: center;">你目前还没有记录生活。</p>';
+                        echo'<p class="narrator" style="font-size: x-large; text-align: center;">查无此记录，请检查编号。</p>';
                     }else{
 
                         for($i = 0; $i < $row_count; $i++){
+
+                            echo "<script>document.getElementById('search_index').value = ".$rows[$i]['diary_id']."</script>";
+
                             if($rows[$i]['status'] != "removed" && $rows[$i]['status'] != "deleted" && $rows[$i]['status'] != "hide"){
-                                echo '<hr /><p class="narrator" style="font-size: large; text-align: center;">' . $rows[$i]['time'] . " 总第 " . $rows[$i]['diary_id'] . " 条.";
-                                echo '<p class="narrator" style="text-align: center;"><textarea readonly="readonly" style="background-color:antiquewhite; width:80%; text-align:left; font-size: 18px;" name="content" placeholder="#开始记录你的生活" class="input_font">'. $rows[$i]['content'] .'</textarea></p>';
-                                
+                                echo '<hr /><p class="narrator" style="font-size: large; text-align: center;">' . $rows[$i]['time'] . " 总第 " . $rows[$i]['diary_id'] . " 条 <strong style='color=purple'>状态标志: [" . $rows[$i]['status'] . ']</strong></p>';
+                                // echo '<p class="narrator" style="text-align: center;"><textarea style="width:0%; text-align:left; font-size: 18px;" name="content" rows="0" placeholder="#开始记录生活" class="input_font">'. $rows[$i]['content'] .'</textarea></p>';
+
+                                echo '<form action="diary_update.php" method="post" style="display:center; text-align:center;">
+                                <p><textarea style="width:80%; text-align:left; font-size: 20px;" name="content" rows="15" placeholder="#开始记录生活" class="input_font">'.$rows[$i]['content'].'</textarea></p>
+                                <input type="hidden" name="id" class="input_font" value="'. $rows[$i]['diary_id'] .'"></input>
+                                <button type="submit" class="header_button" onclick="" style="text-align:flex;">更改</button>
+                              </form>';
+
                                 echo '<form action="diary_photo_unlink.php" name="form" method="post" enctype="multipart/form-data" style="font-size: large; text-align: center; color: purple">  
                                 图片取消连接序号(source_id from 1): <input type="hidden" name="diary_id" value="'. $rows[$i]['diary_id'] .'" class="input_font">
                                 <input type="number" name="source_id" id="unlink_'.$rows[$i]['diary_id'].'"/>
                                 <input type="submit" name="submit" value="取消连接(数据库条目删除)" />';
                                 echo '</form>';
 
-                                echo '<form action="diary_edit.php#search_index" name="form" method="post" enctype="multipart/form-data" style="font-size: large; text-align: center; color: purple">
-                                <input type="hidden" name="search_index" value="'.$rows[$i]['diary_id'].'"/>
-                                <input type="submit" name="submit" value="修改这条记录" />';
-                                echo '</form>';
+
+
+                                echo '<form action="diary_delete.php" method="post" style="display:center; text-align:center;" id="date">
+                                    <input type="hidden" name="id" class="input_font" value="'. $rows[$i]['diary_id'] .'"></input>
+                                    <button type="submit" class="header_button" onclick="" style="text-align:flex; color:red;">删除(所有关联也将删除)</button>
+                                    </form>';
 
 
                                 // BEGIN: PICTURE SHOWING
@@ -174,16 +341,16 @@
                                                 </script>';
 
                                             echo '<script>
-                                                document.getElementById("'.$rows1[$j]['diary_id'].'_'.$rows1[$j]['source_id'].'_alt").onclick = function(){
-                                                    document.getElementById("'.$rows1[$j]['diary_id'].'_'.$rows1[$j]['source_id'].'_alt").style.width = 200; 
-                                                    document.getElementById("'.$rows1[$j]['diary_id'].'_'.$rows1[$j]['source_id'].'_alt").style.height = 200; 
+                                                document.getElementById("'.$rows1[$i]['diary_id'].'_'.$rows1[$i]['source_id'].'_alt").onclick = function(){
+                                                    document.getElementById("'.$rows1[$i]['diary_id'].'_'.$rows1[$i]['source_id'].'_alt").style.width = 200; 
+                                                    document.getElementById("'.$rows1[$i]['diary_id'].'_'.$rows1[$i]['source_id'].'_alt").style.height = 200; 
                 
-                                                    document.getElementById("unlink_editor").value = '.$rows1[$j]['source_id'].'; 
+                                                    document.getElementById("unlink_editor").value = '.$rows1[$i]['source_id'].'; 
                                                 }
                 
-                                                document.getElementById("'.$rows1[$j]['diary_id'].'_'.$rows1[$j]['source_id'].'_alt").ondblclick = function(){
-                                                    document.getElementById("'.$rows1[$j]['diary_id'].'_'.$rows1[$j]['source_id'].'_alt").style.width = getWidth()-15; 
-                                                    document.getElementById("'.$rows1[$j]['diary_id'].'_'.$rows1[$j]['source_id'].'_alt").style.height = getHeight()*0.4; 
+                                                document.getElementById("'.$rows1[$i]['diary_id'].'_'.$rows1[$i]['source_id'].'_alt").ondblclick = function(){
+                                                    document.getElementById("'.$rows1[$i]['diary_id'].'_'.$rows1[$i]['source_id'].'_alt").style.width = getWidth()-15; 
+                                                    document.getElementById("'.$rows1[$i]['diary_id'].'_'.$rows1[$i]['source_id'].'_alt").style.height = getHeight()*0.4; 
                                                 }
                                                 </script>';
                                         }else{
@@ -203,13 +370,7 @@
                                 // END: PICTURE SHOWING
 
                             }
-                            // echo "<script>
-                            // var london = new maplibregl.Marker()
-                            //  .setLngLat([".$rows[$i]['longitude'].", ".$rows[$i]['latitude']."])
-                            //  .addTo(map);
-                            // </script>";
                         }
-                        // echo "</table>";
                     }
 
                 }catch(PDOException $e){
@@ -293,7 +454,7 @@ function fun(){
         }
 
         document.getElementById("ymd").innerHTML = +y+"-"+m+"-"+d+" "+hh+":"+mm+":"+ss+" "+notice+"";
-        // saveWork();
+        saveWork();
         setTimeout("fun()",1000)
     }
 
@@ -305,36 +466,40 @@ function fun(){
 
 <script>
 //按键触发
-// document.getElementById("work").onkeydown = function(){
-//     //ctrl+s引导为内保存
-//     if (event.ctrlKey && window.event.keyCode==83){
-//         var form = document.getElementById('savework');
-//         //再次修改input内容
-//         form.submit();
-//         return false;
-//     }
+document.getElementById("work").onkeydown = function(){
+    //ctrl+s引导为内保存
+    if (event.ctrlKey && window.event.keyCode==83){
+        var form = document.getElementById('savework');
+        //再次修改input内容
+        form.submit();
+        return false;
+    }
+}
+
+// const txHeight = 16;
+// const tx = document.getElementsByTagName("textarea");
+
+// for (let i = 0; i < tx.length; i++) {
+//   if (tx[i].value == '') {
+//     tx[i].setAttribute("style", "height:" + txHeight + "px; overflow-y:hidden; background-color:antiquewhite; width:80%; text-align:left; font-size: 18px;");
+//   } else {
+//     tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px; overflow-y:hidden; background-color:antiquewhite; width:80%; text-align:left; font-size: 18px;");
+//   }
+//   tx[i].addEventListener("input", OnInput, false);
 // }
 
-// textarea auto shrinking
-const tx = document.getElementsByTagName("textarea");
-for (let i = 0; i < tx.length; i++) {
-  tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px; overflow-y:hidden; background-color:antiquewhite; width:80%; text-align:left; font-size: 18px;");
-  tx[i].addEventListener("input", OnInput, false);
-}
-
-function OnInput() {
-  this.style.height = "auto";
-  this.style.height = (this.scrollHeight) + "px";
-}
-
+// function OnInput() {
+//   this.style.height = "auto";
+//   this.style.height = (this.scrollHeight) + "px";
+// }
 
 // Hiding the image & video if it fails to load
-const txxx = document.getElementsByTagName("img");
+const tx = document.getElementsByTagName("img");
 
-for (let i = 0; i < txxx.length; i++) {
-    txxx[i].addEventListener('error', function handleError() {
+for (let i = 0; i < tx.length; i++) {
+    tx[i].addEventListener('error', function handleError() {
         // console.log(tx[i].src + " has loading error thus hiding.");
-        txxx[i].style.display = 'none';
+        tx[i].style.display = 'none';
         console.clear();
     });
 }

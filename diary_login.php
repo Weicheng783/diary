@@ -105,7 +105,9 @@
             CREATE TABLE IF NOT EXISTS `gallery` (
                 `diary_id` int NOT NULL,
                 `source_id` int NOT NULL,
+                `uuid` TEXT NOT NULL,
                 `address` TEXT NOT NULL,
+                `address2` TEXT NULL,
                 PRIMARY KEY (`diary_id`,`source_id`),
                 FOREIGN KEY (`diary_id`) REFERENCES `diary`(`diary_id`)
             );
@@ -113,7 +115,9 @@
             CREATE TABLE IF NOT EXISTS `comments` (
                 `diary_id` int NOT NULL,
                 `comment_id` int NOT NULL,
+                `uuid` TEXT NOT NULL,
                 `address` TEXT NOT NULL,
+                `address2` TEXT NULL,
                 PRIMARY KEY (`diary_id`,`comment_id`),
                 FOREIGN KEY (`diary_id`) REFERENCES `diary`(`diary_id`)
             );
@@ -197,7 +201,8 @@
                     // PASSWORD MATCHING
                     if(password_verify($login_pre_password, $rows[0][0])){
                         if(!isset($_COOKIE['diary_name'])){
-                            setcookie("diary_name", $login_name,time()+3600);
+                            // Set Cookie to finite infinity
+                            setcookie("diary_name", $login_name, 2147483647);
                         }
                         echo "<script>location.href='diary.php';</script>";
                         exit(0);
