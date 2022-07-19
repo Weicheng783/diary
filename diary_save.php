@@ -13,9 +13,9 @@ if (!isset($_COOKIE['diary_name'])){
 }
 
 try{
-    $dsn="mysql:host=localhost; dbname=diary";
-    $user="weicheng";
-    $password='awc020826';
+    $dsn="mysql:host=".$_COOKIE['diary_server']."; port=".$_COOKIE['diary_server_port']."; dbname=diary";
+    $user=$_COOKIE['diary_server_user'];
+    $password=$_COOKIE['diary_server_password'];
     $pdo=new PDO($dsn,$user,$password);
     $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
@@ -43,7 +43,7 @@ try{
 
     setcookie("diary_work","");
     setcookie("diary_work", $content, 2147483647);
-    setcookie("diary_work_preference", "cookie", time()+7200);
+    setcookie("diary_work_preference", "cookie", 2147483647);
     echo "<script>alert('⚠️保存失败，已写入缓存，回到页面将以缓存优先. ⚠️请注意保存下面👇你的内容, 这非常重要因为你现在是离线状态，不要跳过，下一个页面可能就不会显示了：".$content."');location.href='diary_edit.php';</script>";
 }
 

@@ -2,9 +2,9 @@
 header("Content-type:text/html;charset=utf-8");
 
 try{
-    $dsn="mysql:host=localhost; dbname=diary";
-    $user="weicheng";
-    $password='awc020826';
+    $dsn="mysql:host=".$_COOKIE['diary_server']."; port=".$_COOKIE['diary_server_port']."; dbname=diary";
+    $user=$_COOKIE['diary_server_user'];
+    $password=$_COOKIE['diary_server_password'];
     $pdo=new PDO($dsn,$user,$password);
     $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 

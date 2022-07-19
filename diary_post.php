@@ -7,9 +7,9 @@ if (!isset($_COOKIE['diary_name'])){
 }
 
 try{
-    $dsn="mysql:host=localhost; dbname=diary";
-    $user="weicheng";
-    $password='awc020826';
+    $dsn="mysql:host=".$_COOKIE['diary_server']."; port=".$_COOKIE['diary_server_port']."; dbname=diary";
+    $user=$_COOKIE['diary_server_user'];
+    $password=$_COOKIE['diary_server_password'];
     $pdo=new PDO($dsn,$user,$password);
     $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
@@ -31,7 +31,7 @@ try{
 }catch(PDOException $e){
     setcookie("diary_work", "", time());
     setcookie("diary_work", $content, 2147483647);
-    setcookie("diary_work_preference", "cookie", time()+7200);
+    setcookie("diary_work_preference", "cookie", 2147483647);
 
     echo "<script>alert('本次数据未被插入总表, 但已写入缓存, 回到页面将以缓存优先取回.');location.href='diary.php';</script>";
 }

@@ -4,7 +4,7 @@
 import mysql.connector
 # pip install mysql-connector-python
 try:
-    cnx = mysql.connector.connect(user='weicheng', password='awc020826',
+    cnx = mysql.connector.connect(user='', password='',
                               host='localhost',
                               database='diary', auth_plugin='mysql_native_password')
 except:

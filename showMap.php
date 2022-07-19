@@ -29,8 +29,8 @@
 
 
 	try{
-		$user = "root";
-		$password = "Awc020826*";
+		$user = "";
+		$password = "";
 
 		$pdo = new pdo('mysql:host=localhost; dbname=location', $user, $password);
 		$pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);

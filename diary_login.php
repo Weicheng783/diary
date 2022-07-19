@@ -1,9 +1,14 @@
 <!-- Connection to DB -->
 <?php
     // header("Content-type:text/html;charset=utf-8");
-    $user="weicheng";
-    $password='awc020826';
-    $dsn="mysql:host=localhost";
+    if(!isset($_COOKIE['diary_server_user']) or !isset($_COOKIE['diary_server_password']) or !isset($_COOKIE['diary_server']) or !isset($_COOKIE['diary_server_port']) ){
+        echo "<script>alert('服务器没有配置好，转至配置页面。'); location.href='diary_setup.php'</script>";
+        exit(0);
+    }
+
+    $user=$_COOKIE['diary_server_user'];
+    $password=$_COOKIE['diary_server_password'];
+    $dsn="mysql:host=".$_COOKIE['diary_server']."; port=".$_COOKIE['diary_server_port']."";
     try
     {
         // Input Authentication
@@ -36,17 +41,12 @@
         }
 
         // Data Base Preparatory Work
-
-
         $pdo=new PDO($GLOBALS['dsn'],$GLOBALS['user'], $GLOBALS['password']);
         $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-        // echo "<h3 style='text-align:center; color:green;'>Database Connected, Entering Login/Registration Phase. You will be redirected to the login page once confirmed.</h3>";
 
         try{
             $sql = "CREATE DATABASE IF NOT EXISTS diary";
             $pdo->query($sql);
-
-            $pdo = new pdo('mysql:host=localhost; dbname=diary', $user, $password);
             $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
             // echo "<h3 style='text-align:center; color:green;'>Database Connected.</h3>";
 
@@ -144,9 +144,8 @@
         $login_pre_password = $login_passwd;
 
         // Data Base Preparatory Work
-        $dsn="mysql:host=localhost";
-
-        $pdo = new pdo('mysql:host=localhost; dbname=diary', $GLOBALS['user'], $GLOBALS['password']);
+        // We update the pdo to allow us login the specified database
+        $pdo=new PDO($GLOBALS['dsn']."; dbname=diary",$GLOBALS['user'], $GLOBALS['password']);
         $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     
         try{
@@ -172,13 +171,6 @@
                     $re = $pdo -> query($sql);
                     $rows = $re->fetchAll();
                 }
-
-                // print_r ($rows);
-                // echo "<p>Registration Successful.</p>";
-                // setcookie("id", $login_id, time()+3600);
-                // setcookie("password", $login_pre_password, time()+3600);
-                // setcookie("name", $login_name,time()+3600);
-                // setcookie("staff", $login_staff, time()+3600);
 
                 echo "<script>alert('用户不存在。如果是第一次登录，请再试一次，数据库已初始完成.');location.href='diary.php';</script>";
                 exit(0);

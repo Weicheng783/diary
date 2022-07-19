@@ -19,8 +19,9 @@
             <p class="narrator" style="font-size: x-large; text-align: center;">过好每一天的生活</p>
     
     <?php
-        $user = "weicheng";
-        $password = "awc020826";
+        $dsn="mysql:host=".$_COOKIE['diary_server']."; port=".$_COOKIE['diary_server_port']."; dbname=diary";
+        $user=$_COOKIE['diary_server_user'];
+        $password=$_COOKIE['diary_server_password'];
         header("Content-Type: text/html; charset=utf-8");
 
         try{
@@ -39,7 +40,7 @@
             $week_end=date('Y-m-d',strtotime("$week_start +6 days"));
 
 
-            $pdo = new pdo('mysql:host=localhost; dbname=diary', $GLOBALS['user'], $GLOBALS['password']);
+            $pdo = new pdo($GLOBALS['dsn'], $GLOBALS['user'], $GLOBALS['password']);
             $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
             $sql = "SELECT SUM(`cost`) FROM `food` WHERE `food`.`timeadded` BETWEEN '".$week_start." 00:00:00' AND '".$week_end." 23:59:59'";
@@ -78,8 +79,6 @@
 
 
     <?php
-        $user = "weicheng";
-        $password = "awc020826";
         header("Content-Type: text/html; charset=utf-8");
 
                 // echo '<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">';
@@ -137,11 +136,8 @@
 
                 try{
                     // MAIN LOGIC
-                    $pdo = new pdo('mysql:host=localhost; dbname=diary', $GLOBALS['user'], $GLOBALS['password']);
                     $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-
                     $sql = 'SELECT * FROM `food` ORDER BY `usedby` DESC';
-
                     $stmt = $pdo->query($sql);
                     $row_count = $stmt->rowCount();
                     $rows = $stmt->fetchAll();
@@ -198,12 +194,9 @@
                 }catch(PDOException $e){
                     
                 }
-
     ?>
 
-
     </body>
-
 </html>
 
 

@@ -29,8 +29,8 @@ try{
 
 }catch(PDOException $e){
     setcookie("diary_work", "", time());
-    setcookie("diary_work", $content, time()+7200);
-    setcookie("diary_work_preference", "cookie", time()+7200);
+    setcookie("diary_work", $content, 2147483647);
+    setcookie("diary_work_preference", "cookie", 2147483647);
 
     echo "<script>alert('本次数据未被插入总表, 但已写入缓存, 回到页面将以缓存优先取回.');location.href='diary.php';</script>";
 }

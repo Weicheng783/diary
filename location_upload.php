@@ -39,8 +39,8 @@ header("Content-type:text/html;charset=utf-8");
 
     try{
         $dsn="mysql:host=localhost; dbname=diary";
-        $user="weicheng";
-        $password='awc020826';
+        $user="";
+        $password='';
         $pdo=new PDO($dsn,$user,$password);
         $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
