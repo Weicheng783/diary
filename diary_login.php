@@ -50,6 +50,10 @@
             $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
             // echo "<h3 style='text-align:center; color:green;'>Database Connected.</h3>";
 
+            // We update the pdo to allow us login the specified database
+            $pdo=new PDO($GLOBALS['dsn']."; dbname=diary",$GLOBALS['user'], $GLOBALS['password']);
+            $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+            
             $sql = "
 
             CREATE TABLE IF NOT EXISTS `food` ( 
@@ -144,10 +148,6 @@
         $login_pre_password = $login_passwd;
 
         // Data Base Preparatory Work
-        // We update the pdo to allow us login the specified database
-        $pdo=new PDO($GLOBALS['dsn']."; dbname=diary",$GLOBALS['user'], $GLOBALS['password']);
-        $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-    
         try{
             // Login Main Function Code Snippet
  
