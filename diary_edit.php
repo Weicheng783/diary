@@ -7,7 +7,7 @@
     </head>
     <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 
-    <body style="display:center; background-color: antiquewhite;">
+    <body style="display:center; background-color: white;">
         <div id='header_group' style="display:block; text-align: center;"></div>
         <p class="narrator" style="font-size: x-large; text-align: center; " id="ymd"></p>
         <p style="text-align: center;"><button type="submit" class="header_button" onclick="location.href='diary.php'" style="text-align: center;">回到主页面</button></p>

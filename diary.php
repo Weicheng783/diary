@@ -7,7 +7,7 @@
     </head>
     <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 
-    <body style="display:center; background-color: antiquewhite;">
+    <body style="display:center; background-color: white;">
         <div id='header_group' style="display:block; text-align: center;"></div>
         <p class="narrator" style="font-size: x-large; text-align: center; " id="ymd"></p>
         <p style="text-align: center;"><button type="submit" class="header_button" onclick="location.href='diary_edit.php'" style="text-align: center;">写新记录</button></p>
@@ -132,7 +132,7 @@
 
                             echo '<form action="diary_edit.php#search_index" name="form" method="post" enctype="multipart/form-data" style="font-size: large; text-align: center; color: purple">
                             <input type="hidden" name="search_index" value="'.$rows[$i]['diary_id'].'"/>
-                            <input type="submit" name="submit" value="修改这条记录" />';
+                            <p><button type="submit" name="submit" class="header_button" onclick="" style="text-align:flex;">修改这条记录</button></p>';
                             echo '</form>';
 
 
@@ -200,6 +200,8 @@
         }
 
     ?>
+
+    <hr />
 
     <p style="text-align: center;"><button type="submit" class="header_button" onclick="location.href='diary_reset_cookie.php'" style="text-align: center; color:red;">清除Cookies</button></p>
     <p style="text-align: center;"><button type="submit" class="header_button" onclick="location.href='diary_sync.php'" style="text-align: center;">同步上游服务器</button></p>
