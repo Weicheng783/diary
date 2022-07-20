@@ -201,7 +201,8 @@
 
     ?>
 
-        <p style="text-align: center;"><button type="submit" class="header_button" onclick="location.href='diary_reset_cookie.php'" style="text-align: center;">清除Cookies</button></p>
+    <p style="text-align: center;"><button type="submit" class="header_button" onclick="location.href='diary_reset_cookie.php'" style="text-align: center; color:red;">清除Cookies</button></p>
+    <p style="text-align: center;"><button type="submit" class="header_button" onclick="location.href='diary_sync.php'" style="text-align: center;">同步上游服务器</button></p>
 
     </body>
 </html>

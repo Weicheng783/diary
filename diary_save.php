@@ -5,7 +5,7 @@ if (!isset($_COOKIE['diary_name'])){
     $content = $_REQUEST['content'];
     setcookie("diary_work","");
     setcookie("diary_work", $content, 2147483647);
-    setcookie("diary_work_preference", "cookie", time()+7200);
+    setcookie("diary_work_preference", "cookie", 2147483647);
     echo "<script>alert('⚠️保存失败，已写入缓存，回到页面将以缓存优先. ⚠️请注意保存下面👇你的内容, 这非常重要因为你现在是无登录状态，可能因为cookies过期，不要跳过，下一个页面可能就不会显示了：".$content."');location.href='diary.php';</script>";
    
     echo "<script>location.href='diary.php';</script>";

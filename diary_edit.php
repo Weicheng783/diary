@@ -11,7 +11,9 @@
         <div id='header_group' style="display:block; text-align: center;"></div>
         <p class="narrator" style="font-size: x-large; text-align: center; " id="ymd"></p>
         <p style="text-align: center;"><button type="submit" class="header_button" onclick="location.href='diary.php'" style="text-align: center;">回到主页面</button></p>
-        <p style="text-align: center;"><button type="submit" class="header_button" onclick="location.href='diary_reset_cookie.php'" style="text-align: center;">清除Cookies</button></p>
+        <p style="text-align: center;"><button type="submit" class="header_button" onclick="location.href='diary_reset_cookie.php'" style="text-align: center; color:red;">清除Cookies</button></p>
+        <p style="text-align: center;"><button type="submit" class="header_button" onclick="location.href='diary_sync.php'" style="text-align: center;">同步上游服务器</button></p>
+
     <?php
         header("Content-type:text/html;charset=utf-8");
 
@@ -292,7 +294,20 @@
 
                             echo '<form action="diary_delete.php" method="post" style="display:center; text-align:center;" id="date">
                                 <input type="hidden" name="id" class="input_font" value="'. $rows[$i]['diary_id'] .'"></input>
-                                <button type="submit" class="header_button" onclick="" style="text-align:flex; color:red;">删除(所有关联也将删除)</button>
+                                <input type="hidden" name="method" class="input_font" value="local"></input>
+                                <button type="submit" class="header_button" onclick="" style="text-align:flex; color:red;">本地删除(所有关联也将删除)</button>
+                                </form>';
+
+                            echo '<form action="diary_delete.php" method="post" style="display:center; text-align:center;" id="date">
+                                <input type="hidden" name="id" class="input_font" value="'. $rows[$i]['diary_id'] .'"></input>
+                                <input type="hidden" name="method" class="input_font" value="remote"></input>
+                                <button type="submit" class="header_button" onclick="" style="text-align:flex; color:red;">远程服务器删除</button>
+                                </form>';
+
+                            echo '<form action="diary_delete.php" method="post" style="display:center; text-align:center;" id="date">
+                                <input type="hidden" name="id" class="input_font" value="'. $rows[$i]['diary_id'] .'"></input>
+                                <input type="hidden" name="method" class="input_font" value="dual"></input>
+                                <button type="submit" class="header_button" onclick="" style="text-align:flex; color:red;">双清</button>
                                 </form>';
 
 
