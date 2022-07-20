@@ -14,6 +14,8 @@
         <p style="text-align: center;"><button type="submit" class="header_button" onclick="location.href='diary.php'" style="text-align: center;">回到主页面</button></p>
 
     <?php
+        echo '<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">';
+
         header("Content-Type: text/html; charset=utf-8");
 
         if (!isset($_COOKIE['diary_name'])){
