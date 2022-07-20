@@ -7,7 +7,7 @@ if (!isset($_COOKIE['diary_name'])){
 }
 
 if(!isset($_COOKIE['diary_sync_server']) && ($_REQUEST['method'] == "dual" or $_REQUEST['method'] == "remote")){
-    echo "<script>alert('你还没有设置远程服务器同步信息，请设置后再做删除操作.');location.href='diary_edit.php';</script>";
+    echo "<script>alert('你还没有设置远程服务器同步信息，请设置后再做删除操作.');location.href='diary_sync.php';</script>";
     exit(0);
 }else if($_REQUEST['method'] == "dual" or $_REQUEST['method'] == "remote"){
     try{

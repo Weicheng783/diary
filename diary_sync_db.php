@@ -35,6 +35,10 @@
         setcookie("diary_sync_port", "", time());
         setcookie("diary_sync_port", $_REQUEST['diary_sync_port'], 2147483647);
 
+        if(isset($_REQUEST['justsave']) && $_REQUEST['justsave'] != FALSE){
+            echo "<script>alert('远端服务器配置保存成功。'); location.href='diary_sync.php'</script>";
+        }
+
         // echo '<div style="text-align:center; ">';
         // echo '<form action="diary_sync_db.php" method="post" style="display:center;">
         // <p>上游服务器域名或ip地址: Address/IP: <input type="input" name="diary_server" class="input_font" value="'.$sync.'"></input></p>
@@ -264,10 +268,6 @@
 
         echo "<h3 style='text-align:center; color:brown;'>上传了 ".$diary_diff." 条 diary 记录，".$gallery_diff." 条 gallery 记录，".$comments_diff." 条 comments 记录。</h3>";
         echo "<h3 style='text-align:center; color:green;'>✅ 本地 -> 服务器 传输完成。</h3>";
-
-
-
-
 
     ?>
 

@@ -43,7 +43,9 @@
         <p>服务器密码 Server Login Password: <input type="password" name="diary_sync_pwd" class="input_font" value="'.$sync_pwd.'"></input></p>
         <input type="hidden" name="verification" value="20220719"></input>
         <button type="submit" class="header_button" onclick="">开始同步</button>
+        <input type="checkbox" class="header_button" name="justsave">仅设置远端服务器</input>
         </form>';
+
         echo '</div>';
     ?>
 
