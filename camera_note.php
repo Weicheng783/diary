@@ -10,7 +10,7 @@
     <body style="">
 
         <div id='header_group' style="display:block; text-align: center;"></div>
-        <p class="narrator" style="font-size: x-large; text-align: center;">在下方选择你要看的时间段，每段十分钟，文件名为时段起始时间。</p>
+        <p class="narrator" style="font-size: x-large; text-align: center; color: yellow;">在下方选择你要看的时间段，每段十分钟，文件名为时段起始时间。</p>
 
         <?php
             echo '<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">';
@@ -61,7 +61,7 @@
 <script>
 
     function fun(){
-        sleep(10000);
+        sleep(10);
 
         var date = new Date();
         var y = date.getFullYear();
