@@ -7,7 +7,7 @@
     </head>
     <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
 
-    <body style="background-color: antiquewhite;">
+    <body style="">
 
         <div id='header_group' style="display:block; text-align: center;"></div>
         <p class="narrator" style="font-size: x-large; text-align: center;">在下方选择你要看的时间段，每段十分钟，文件名为时段起始时间。</p>
@@ -84,12 +84,14 @@
             var notice = "Have a nice day."
         }
 
+        location.reload();
+
         // document.getElementById("ymd").innerHTML = +y+"-"+m+"-"+d+" "+hh+":"+mm+":"+ss+"  ---  "+notice+" (显示时间为你的本机时间)";
-        // setTimeout("fun()",1000)
+        setTimeout("fun()",10000)
     }
 
     window.onload = function(){
-        // setTimeout("fun()",0)
+        setTimeout("fun()",0)
     }
 
 
@@ -146,7 +148,7 @@
         border-width: 5px;
         border: solid;
         border-color: skyblue;
-        background-color: antiquewhite;
+        /* background-color: antiquewhite; */
         text-align: center;
         display:inline-block;
         margin-left: 25%;
