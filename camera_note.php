@@ -61,7 +61,9 @@
 <script>
 
     function fun(){
-        var date = new Date()
+        sleep(10000);
+
+        var date = new Date();
         var y = date.getFullYear();
         var m = date.getMonth()+1;
         var d = date.getDate(); 
@@ -84,9 +86,9 @@
             var notice = "Have a nice day."
         }
 
-
+        location.reload();
         // document.getElementById("ymd").innerHTML = +y+"-"+m+"-"+d+" "+hh+":"+mm+":"+ss+"  ---  "+notice+" (显示时间为你的本机时间)";
-        setTimeout("fun()",10000)
+        setTimeout("fun()",10000);
 
 
         
@@ -94,7 +96,6 @@
 
     window.onload = function(){
         setTimeout("fun()",0)
-        setTimeout(location.reload(),10000)
     }
 
 
