@@ -16,6 +16,8 @@
         <p class="narrator" style="font-size: x-large; text-align: center;">在下方选择你要看的时间段，每段十分钟，文件名为时段起始时间。</p>
 
         <?php
+            echo '<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">';
+
             foreach (array_reverse(glob("/var/www/html/camera/*")) as $filename) {
                 $filename = substr($filename, 21);
                 echo "<p style='text-align:center; font-size: large;'><a href='http://132.145.74.19/camera/".$filename."' style='text-align:center;'>".$filename."</a></p>";
