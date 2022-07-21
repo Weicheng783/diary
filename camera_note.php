@@ -10,7 +10,7 @@
     <body style="">
 
         <div id='header_group' style="display:block; text-align: center;"></div>
-        <p class="narrator" style="font-size: x-large; text-align: center; color: yellow;"><strong>在下方选择你要看的时间段，每段十分钟，文件名为时段起始时间。</strong></p>
+        <p class="narrator" style="font-size: x-large; text-align: center; color: yellow;" id="banner"><strong>在下方选择你要看的时间段，每段十分钟，文件名为时段起始时间。</strong></p>
 
         <?php
             echo '<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">';
@@ -61,7 +61,15 @@
 <script>
 
     function fun(){
-        sleep(10);
+        if(document.getElementById("banner").right == 0){
+            location.reload();
+        }else{
+            document.getElementById("banner").left = document.getElementById("banner").left - 1;
+            // document.getElementById("banner"). = document.getElementById("banner").left - 1;
+        }
+
+
+        // sleep(10);
 
         var date = new Date();
         var y = date.getFullYear();
@@ -86,7 +94,7 @@
             var notice = "Have a nice day."
         }
 
-        location.reload();
+
         // document.getElementById("ymd").innerHTML = +y+"-"+m+"-"+d+" "+hh+":"+mm+":"+ss+"  ---  "+notice+" (显示时间为你的本机时间)";
         setTimeout("fun()",10000);
 
