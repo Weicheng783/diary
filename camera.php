@@ -13,7 +13,7 @@
 
         <p class="narrator" style="font-size: x-large; text-align: center;">录像中心</p>
         <p class="narrator" style="font-size: x-large; text-align: center; " id="ymd"></p>
-        <p class="narrator" style="font-size: x-large; text-align: center;">在下方选择你要看的时间段，每段十分钟，文件名为时段起始时间。</p>
+        <p class="narrator" style="font-size: medium; text-align: center;">在下方选择你要看的时间段，每段十分钟，文件名为时段起始时间。</p>
 
         <?php
             // set default timezone
@@ -118,7 +118,7 @@
             var notice = "Have a nice day."
         }
 
-        document.getElementById("ymd").innerHTML = +y+"-"+m+"-"+d+" "+hh+":"+mm+":"+ss+"  ---  "+notice+" [本机时间]";
+        document.getElementById("ymd").innerHTML = +y+"-"+m+"-"+d+" "+hh+":"+mm+":"+ss+" "+notice;
         setTimeout("fun()",1000)
     }
 
