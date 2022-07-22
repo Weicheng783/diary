@@ -14,6 +14,7 @@
         <p class="narrator" style="font-size: x-large; text-align: center;">录像中心</p>
         <p class="narrator" style="font-size: x-large; text-align: center; " id="ymd"></p>
         <p class="narrator" style="font-size: medium; text-align: center;">在下方选择你要看的时间段，每段十分钟，文件名为时段起始时间。</p>
+        <h1>正在轮播字幕： <span id="name-span"></span></h1>
 
         <?php
             // set default timezone
@@ -126,6 +127,12 @@
         setTimeout("fun()",0)
         setTimeout("serverTime()",1000)
     }
+
+    fetch('http://localhost/diary/message.txt')
+    .then(res => res.text())
+    .then((textResponse) => {
+        document.querySelector('#name-span').textContent = textResponse;
+    });
 
 
 </script>
