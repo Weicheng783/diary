@@ -14,9 +14,13 @@
         <p class="narrator" style="font-size: x-large; text-align: center;">录像中心</p>
         <p class="narrator" style="font-size: x-large; text-align: center; " id="ymd"></p>
         <p class="narrator" style="font-size: medium; text-align: center;">在下方选择你要看的时间段，每段十分钟，文件名为时段起始时间。</p>
-        <h1>正在轮播字幕： <span id="name-span"></span></h1>
+        
 
         <?php
+            // live message showing
+            $msg = file_get_contents('http://132.145.74.19/diary/message.txt');
+            echo '<p class="narrator" style="font-size: large; text-align: center; color: green;">正在轮播状态字幕：'.$msg.'</p>';
+
             // set default timezone
             date_default_timezone_set('Europe/London'); // CDT
             $current_date = date('Y/m/d H:i:s');
@@ -127,14 +131,6 @@
         setTimeout("fun()",0)
         setTimeout("serverTime()",1000)
     }
-
-    fetch('http://localhost/diary/message.txt')
-    .then(res => res.text())
-    .then((textResponse) => {
-        document.querySelector('#name-span').textContent = textResponse;
-    });
-
-
 </script>
 
 
