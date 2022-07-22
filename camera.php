@@ -16,6 +16,23 @@
         <p class="narrator" style="font-size: x-large; text-align: center;">在下方选择你要看的时间段，每段十分钟，文件名为时段起始时间。</p>
 
         <?php
+            function getSymbolByQuantity($bytes) {
+                $symbols = array('B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB');
+                $exp = floor(log($bytes)/log(1024));
+            
+                return sprintf('%.2f '.$symbols[$exp], ($bytes/pow(1024, floor($exp))));
+            }
+
+            // $ds contains the total number of bytes available on "/"
+            $ds = disk_total_space("/");
+            $ds_symbol = getSymbolByQuantity($ds);
+
+            // $df contains the number of bytes available on "/"
+            $df = disk_free_space("/");
+            $du = $ds - $df;
+            $du_symbol = getSymbolByQuantity($du);
+
+            echo '<p class="narrator" style="font-size: medium; text-align: center;">服务器磁盘空间使用情况：已用 '.$du_symbol.' / 总共 '.$ds_symbol.'. 当可用磁盘空间小于一定数值时，前期视频会被删除。</p>';
             echo '<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">';
 
             foreach (array_reverse(glob("/var/www/html/camera/*")) as $filename) {
