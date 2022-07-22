@@ -124,7 +124,7 @@
 
     window.onload = function(){
         setTimeout("fun()",0)
-        setTimeout("serverTime()",0)
+        setTimeout("serverTime()",1000)
     }
 
 
