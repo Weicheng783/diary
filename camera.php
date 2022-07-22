@@ -16,6 +16,11 @@
         <p class="narrator" style="font-size: x-large; text-align: center;">在下方选择你要看的时间段，每段十分钟，文件名为时段起始时间。</p>
 
         <?php
+            // set default timezone
+            date_default_timezone_set('Europe/London'); // CDT
+            $current_date = date('Y/m/d H:i:s');
+            echo '<p class="narrator" style="font-size: large; text-align: center; ">英国伦敦服务器时间: <strong id="serverYMD">'.$current_date.'</strong>.</p>';
+
             function getSymbolByQuantity($bytes) {
                 $symbols = array('B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB');
                 $exp = floor(log($bytes)/log(1024));
@@ -80,6 +85,15 @@
 
 <script>
 
+    function serverTime(){
+        var st = new Date(document.getElementById("serverYMD").innerHTML);
+        // console.log(document.getElementById("serverYMD").innerHTML);
+        st = new Date(st.setSeconds(st.getSeconds() + 1));
+
+        document.getElementById("serverYMD").innerHTML = st.getFullYear() + "/" + (st.getMonth()+1) + "/" + st.getDate() + " " + st.getHours() + ":" + st.getMinutes() + ":" + st.getSeconds();
+        setTimeout("serverTime()",1000);
+    }
+
     function fun(){
         var date = new Date()
         var y = date.getFullYear();
@@ -104,12 +118,13 @@
             var notice = "Have a nice day."
         }
 
-        document.getElementById("ymd").innerHTML = +y+"-"+m+"-"+d+" "+hh+":"+mm+":"+ss+"  ---  "+notice+" (显示时间为你的本机时间)";
+        document.getElementById("ymd").innerHTML = +y+"-"+m+"-"+d+" "+hh+":"+mm+":"+ss+"  ---  "+notice+" [本机时间]";
         setTimeout("fun()",1000)
     }
 
     window.onload = function(){
         setTimeout("fun()",0)
+        setTimeout("serverTime()",0)
     }
 
 
