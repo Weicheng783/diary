@@ -1,5 +1,7 @@
 <!-- Connection to DB -->
 <?php
+    date_default_timezone_set('Europe/London');
+    
     // header("Content-type:text/html;charset=utf-8");
     if(!isset($_COOKIE['diary_server_user']) or !isset($_COOKIE['diary_server_password']) or !isset($_COOKIE['diary_server']) or !isset($_COOKIE['diary_server_port']) ){
         echo "<script>alert('服务器没有配置好，转至配置页面。'); location.href='diary_setup.php'</script>";
