@@ -15,7 +15,8 @@
 
     <?php
         echo '<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">';
-
+        date_default_timezone_set('Europe/London');
+        
         header("Content-Type: text/html; charset=utf-8");
 
         if (!isset($_COOKIE['diary_name'])){

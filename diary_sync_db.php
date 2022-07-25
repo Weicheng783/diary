@@ -16,6 +16,8 @@
 
     <?php
         header("Content-Type: text/html; charset=utf-8");
+        date_default_timezone_set('Europe/London');
+
         echo '<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">';
 
         if (!isset($_COOKIE['diary_name'])){
@@ -166,6 +168,8 @@
                 }
 
             }
+
+            
         }
 
         echo "<h3 style='text-align:center; color:brown;'>下载结果：本地新建 ".$diary_diff." 条 diary 记录，".$gallery_diff." 条 gallery 记录，".$comments_diff." 条 comments 记录。</h3>";
