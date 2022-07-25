@@ -19,7 +19,9 @@ try{
 
     $sql = "SET FOREIGN_KEY_CHECKS = 0;
     UPDATE `diary` SET `content`='".$content."' WHERE `diary_id` = ".$id.";
-    INSERT INTO `alternations` (`diary_id`, `time`) VALUES ('".$id."', '".date('Y/m/d H:i:s', time())."');";
+    INSERT INTO `alternations` (`diary_id`, `time`) VALUES ('".$id."', '".date('Y/m/d H:i:s', time())."');
+    UPDATE `alternations` SET `time`='".date('Y/m/d H:i:s', time())."' WHERE `diary_id` = ".$id.";
+    ";
     // echo "<script>alert('".$sql."');</script>";
     // echo "<script>console.log('".$sql."')</script>";
     // die;
