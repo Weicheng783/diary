@@ -22,7 +22,7 @@ try{
 
     setcookie("diary_work_preference", "");
 
-    $sql = "INSERT INTO `diary` (`content`, `status`) VALUES ('".$content."', '".$status."');";
+    $sql = "INSERT INTO `diary` (`content`, `status`, `time`) VALUES ('".$content."', '".$status."', '".date('Y-m-d H:i:s', time())."');";
     $pdo->query($sql);
 
     setcookie("diary_work", "", time());
