@@ -28,7 +28,7 @@ try{
 
 
     $sql = "DELETE FROM `temporaryWork` WHERE `id`<".$rows[0]['id']."-8;
-     INSERT INTO `temporaryWork` (`content`) VALUES ('".$content."');";
+     INSERT INTO `temporaryWork` (`content`, `time`) VALUES ('".$content."', '".date('Y-m-d H:i:s', time())."');";
 
     //  echo "<script>console.log('".$content."')</script>";
     //  die;
