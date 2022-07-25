@@ -140,6 +140,17 @@
 
             $pdo->query($sql);
 
+            $sql = "            
+            CREATE TABLE IF NOT EXISTS `alternations` (
+                `diary_id` int NOT NULL,
+                `time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (`diary_id`),
+                FOREIGN KEY (`diary_id`) REFERENCES `diary`(`diary_id`)
+            );
+            ";
+
+            $pdo->query($sql);
+
         }catch(PDOException $e){
             echo "<h3 style='text-align:center; color:red;'>Database Disconnected.</h3>";
             echo "<script>alert('此时无法连接数据库，如果问题一直存在，是代码或mysql服务出了问题.');location.href='diary.php';</script>";

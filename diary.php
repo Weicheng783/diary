@@ -121,7 +121,16 @@
 
                     for($i = 0; $i < $row_count; $i++){
                         if($rows[$i]['status'] != "removed" && $rows[$i]['status'] != "deleted" && $rows[$i]['status'] != "hide"){
+
+                            $query_alt = 'SELECT `time` FROM `alternations` WHERE `diary_id`="'.$rows[$i]['diary_id'].'";';
+                            $stmt_alt = $pdo->query($query_alt);
+                            $row_count_alt = $stmt_alt->rowCount();
+                            $rows_alt = $stmt_alt->fetchAll();
+
                             echo '<hr /><p class="narrator" style="font-size: large; text-align: center;">' . $rows[$i]['time'] . " 总第 " . $rows[$i]['diary_id'] . " 条.";
+                            if($row_count_alt != 0){
+                                echo '<p class="narrator" style="font-size: large; text-align: center; color: pink;">' . $rows_alt[0]['time'] . " 进行了最后一次修改。";
+                            }
                             echo '<p class="narrator" style="text-align: center;"><textarea readonly="readonly" style="background-color:antiquewhite; width:80%; text-align:left; font-size: 18px;" name="content" placeholder="#开始记录你的生活" class="input_font">'. $rows[$i]['content'] .'</textarea></p>';
                             
                             echo '<form action="diary_photo_unlink.php" name="form" method="post" enctype="multipart/form-data" style="font-size: large; text-align: center; color: purple">  
