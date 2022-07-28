@@ -18,6 +18,7 @@
 
         <?php
             // live message showing
+            die();
             $msg = file_get_contents('http://132.145.74.19/diary/message.txt');
             echo '<p class="narrator" style="font-size: large; text-align: center; color: green;">正在轮播状态字幕：'.$msg.'</p>';
 
