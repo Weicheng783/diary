@@ -285,6 +285,13 @@
                             <button type="submit" class="header_button" onclick="" style="text-align:flex;">更改</button>
                             </form>';
 
+                            echo '<form action="diary_photo_upload.php" name="form" method="post" enctype="multipart/form-data" style="font-size: large; text-align: center; color: purple">  
+                            图片上传: <input type="file" multiple name="uploads[]" />
+                            <input type="submit" name="submit" value="上传" />';
+                            echo '<input type="hidden" name="diary_id" value="'.$rows[$i]['diary_id'].'" class="input_font">';
+                            echo '<input type="hidden" name="source_id" value="'.$count_gallery.'" class="input_font">';
+                            echo '</form>';
+
                             echo '<form action="diary_photo_unlink.php" name="form" method="post" enctype="multipart/form-data" style="font-size: large; text-align: center; color: purple">  
                             图片取消连接序号(source_id from 1): <input type="hidden" name="diary_id" value="'. $rows[$i]['diary_id'] .'" class="input_font">
                             <input type="number" name="source_id" id="unlink_'.$rows[$i]['diary_id'].'"/>
