@@ -1,1 +1,19 @@
 message.txt
+# Ignore the node_modules directory
+node_modules/
+*.json
+
+# Ignore Logs
+logs
+*.log
+
+# Ignore the build directory
+/dist
+
+# The file containing environment variables 
+.env
+
+# Ignore IDE specific files
+.idea/
+.vscode/
+*.sw*
