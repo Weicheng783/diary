@@ -55,6 +55,8 @@ if (!isset($_COOKIE['diary_name'])){
         echo "<script>alert('服务器连不上.');location.href='diary.php';</script>";
     }
 
+    print $_SERVER['SCRIPT_FILENAME'];
+    
     foreach ($_FILES["uploads"]["error"] as $key => $error) {
         
         echo '文件类型' . $_FILES["uploads"]["type"][$key];
@@ -80,7 +82,7 @@ if (!isset($_COOKIE['diary_name'])){
             $ftp_user_name="weicheng"; 
             $ftp_user_pass="awc020826"; 
             $file = $tmp_name;//tobe uploaded 
-            $remote_file = "./" . $name; 
+            $remote_file = "./gallery/" . $name; 
 
             // set up basic connection 
             $conn_id = ftp_connect($ftp_server); 
