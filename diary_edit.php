@@ -160,7 +160,7 @@
                     <button type="submit" class="header_button" onclick="" style="text-align:flex;">记录</button>
                     </form>';
             
-            echo '<form action="diary_photo_upload.php" name="form" method="post" enctype="multipart/form-data" style="font-size: large; text-align: center; color: purple">  
+            echo '<form action="diary_photo_upload_ftp.php" name="form" method="post" enctype="multipart/form-data" style="font-size: large; text-align: center; color: purple">  
                     图片上传: <input type="file" multiple name="uploads[]" />
                     <input type="submit" name="submit" value="上传" />';
             echo '<input type="hidden" name="diary_id" value="'.$count.'" class="input_font">';
