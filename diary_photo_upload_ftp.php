@@ -56,7 +56,7 @@ if (!isset($_COOKIE['diary_name'])){
     }
 
     print $_SERVER['SCRIPT_FILENAME'];
-    
+
     foreach ($_FILES["uploads"]["error"] as $key => $error) {
         
         echo '文件类型' . $_FILES["uploads"]["type"][$key];
@@ -81,7 +81,7 @@ if (!isset($_COOKIE['diary_name'])){
             $ftp_server="132.145.74.19"; 
             $ftp_user_name="weicheng"; 
             $ftp_user_pass="awc020826"; 
-            $file = $tmp_name;//tobe uploaded 
+            $file = "/Users/weicheng/Desktop/学业文件/大一上学期/我的坚果云/java1.png";//tobe uploaded 
             $remote_file = "./gallery/" . $name; 
 
             // set up basic connection 
