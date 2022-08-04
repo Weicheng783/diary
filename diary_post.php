@@ -27,6 +27,19 @@ try{
 
     setcookie("diary_work", "", time());
 
+    // Clean the save textarea, reset to empty on success.
+    $sql = "SELECT id FROM `temporaryWork` ORDER BY `id` DESC LIMIT 0,1;";
+    $stmt = $pdo->query($sql);
+    $rows = $stmt->fetchAll();
+
+    $sql = "DELETE FROM `temporaryWork` WHERE `id`<".$rows[0]['id']."-8;
+     INSERT INTO `temporaryWork` (`content`, `time`) VALUES ('', '".date('Y-m-d H:i:s', time())."');";
+
+    //  echo "<script>console.log('".$content."')</script>";
+    //  die;
+
+    $pdo->query($sql);
+
     echo "<script>alert('数据插入成功.');location.href='diary.php';</script>";
 
 }catch(PDOException $e){
