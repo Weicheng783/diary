@@ -130,7 +130,7 @@
                             if($row_count_alt != 0){
                                 echo '<p class="narrator" style="font-size: large; text-align: center; color: pink;">' . $rows_alt[0]['time'] . " 进行了最后一次修改。";
                             }
-                            echo '<p class="narrator" style="text-align: center;"><textarea readonly="readonly" style="background-color:antiquewhite; width:80%; text-align:left; font-size: 18px;" name="content" placeholder="#开始记录你的生活" class="input_font">'. $rows[$i]['content'] .'</textarea></p>';
+                            echo '<p class="narrator" style="text-align: center;"><textarea readonly="readonly" style="background-color:antiquewhite; width:80%; text-align:left; font-size: 18px;" name="content" placeholder="#开始记录你的生活" class="input_font">'. $rows[$k]['content'] .'</textarea></p>';
                             
                             echo '<form action="diary_status_handle.php" name="form" method="post" enctype="multipart/form-data" style="font-size: large; text-align: center; color: purple">
                             <input type="hidden" name="diary_id" value="'.$rows[$k]['diary_id'].'"/>
