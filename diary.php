@@ -126,6 +126,8 @@
                             $row_count_alt = $stmt_alt->rowCount();
                             $rows_alt = $stmt_alt->fetchAll();
 
+                            echo '<div style="border: solid; border-radius: 5px; ">';
+                            
                             echo '<hr /><p class="narrator" style="font-size: large; text-align: center;">' . $rows[$k]['time'] . " [置顶记录] 序号 " . $rows[$k]['diary_id'] . " .";
                             if($row_count_alt != 0){
                                 echo '<p class="narrator" style="font-size: large; text-align: center; color: pink;">' . $rows_alt[0]['time'] . " 进行了最后一次修改。";
@@ -142,6 +144,8 @@
                             <input type="hidden" name="search_index" value="'.$rows[$k]['diary_id'].'"/>
                             <p><button type="submit" name="submit" class="header_button" onclick="" style="text-align:flex;">修改这条记录</button></p>';
                             echo '</form>';
+
+                            echo '</div>';
                         }
                     }
 
