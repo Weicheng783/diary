@@ -24,7 +24,6 @@ try{
     // echo "<script>alert('".$sql."');</script>";
     // echo "<script>console.log('".$sql."')</script>";
     // die;
-
     
     $pdo->query($sql);
 

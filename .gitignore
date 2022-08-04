@@ -2,6 +2,7 @@ message.txt
 # Ignore the node_modules directory
 node_modules/
 *.json
+.DS_Store
 
 # Ignore Logs
 logs

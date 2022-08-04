@@ -118,6 +118,32 @@
                 if($row_count == 0){
                     echo'<p class="narrator" style="font-size: x-large; text-align: center;">你目前还没有记录生活。</p>';
                 }else{
+                    for($k = 0 ; $k < $row_count; $k++){
+                        // Top Priority First
+                        if($rows[$k]['status'] == "top"){
+                            $query_alt = 'SELECT `time` FROM `alternations` WHERE `diary_id`="'.$rows[$k]['diary_id'].'";';
+                            $stmt_alt = $pdo->query($query_alt);
+                            $row_count_alt = $stmt_alt->rowCount();
+                            $rows_alt = $stmt_alt->fetchAll();
+
+                            echo '<hr /><p class="narrator" style="font-size: large; text-align: center;">' . $rows[$k]['time'] . " [置顶记录] 序号 " . $rows[$k]['diary_id'] . " .";
+                            if($row_count_alt != 0){
+                                echo '<p class="narrator" style="font-size: large; text-align: center; color: pink;">' . $rows_alt[0]['time'] . " 进行了最后一次修改。";
+                            }
+                            echo '<p class="narrator" style="text-align: center;"><textarea readonly="readonly" style="background-color:antiquewhite; width:80%; text-align:left; font-size: 18px;" name="content" placeholder="#开始记录你的生活" class="input_font">'. $rows[$i]['content'] .'</textarea></p>';
+                            
+                            echo '<form action="diary_status_handle.php" name="form" method="post" enctype="multipart/form-data" style="font-size: large; text-align: center; color: purple">
+                            <input type="hidden" name="diary_id" value="'.$rows[$k]['diary_id'].'"/>
+                            <input type="hidden" name="status" value="normal"/>
+                            <p><button type="submit" name="submit" class="header_button" onclick="" style="text-align:flex;">取消置顶</button></p>';
+                            echo '</form>';
+
+                            echo '<form action="diary_edit.php#search_index" name="form" method="post" enctype="multipart/form-data" style="font-size: large; text-align: center; color: purple">
+                            <input type="hidden" name="search_index" value="'.$rows[$k]['diary_id'].'"/>
+                            <p><button type="submit" name="submit" class="header_button" onclick="" style="text-align:flex;">修改这条记录</button></p>';
+                            echo '</form>';
+                        }
+                    }
 
                     for($i = 0; $i < $row_count; $i++){
                         if($rows[$i]['status'] != "removed" && $rows[$i]['status'] != "deleted" && $rows[$i]['status'] != "hide"){
@@ -127,7 +153,7 @@
                             $row_count_alt = $stmt_alt->rowCount();
                             $rows_alt = $stmt_alt->fetchAll();
 
-                            echo '<hr /><p class="narrator" style="font-size: large; text-align: center;">' . $rows[$i]['time'] . " 总第 " . $rows[$i]['diary_id'] . " 条.";
+                            echo '<hr /><p class="narrator" style="font-size: large; text-align: center;">' . $rows[$i]['time'] . " 序号 " . $rows[$i]['diary_id'] . " .";
                             if($row_count_alt != 0){
                                 echo '<p class="narrator" style="font-size: large; text-align: center; color: pink;">' . $rows_alt[0]['time'] . " 进行了最后一次修改。";
                             }
@@ -142,6 +168,12 @@
                             echo '<form action="diary_edit.php#search_index" name="form" method="post" enctype="multipart/form-data" style="font-size: large; text-align: center; color: purple">
                             <input type="hidden" name="search_index" value="'.$rows[$i]['diary_id'].'"/>
                             <p><button type="submit" name="submit" class="header_button" onclick="" style="text-align:flex;">修改这条记录</button></p>';
+                            echo '</form>';
+
+                            echo '<form action="diary_status_handle.php" name="form" method="post" enctype="multipart/form-data" style="font-size: large; text-align: center; color: purple">
+                            <input type="hidden" name="diary_id" value="'.$rows[$i]['diary_id'].'"/>
+                            <input type="hidden" name="status" value="top"/>
+                            <p><button type="submit" name="submit" class="header_button" onclick="" style="text-align:flex;">置顶</button></p>';
                             echo '</form>';
 
 
