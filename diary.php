@@ -346,7 +346,7 @@ function fun(){
 // textarea auto shrinking
 const tx = document.getElementsByTagName("textarea");
 for (let i = 0; i < tx.length; i++) {
-  tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px; overflow-y:hidden; background-color:antiquewhite; width:80%; text-align:left; font-size: 18px;");
+  tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight+20) + "px; overflow-y:hidden; background-color:antiquewhite; width:80%; text-align:left; font-size: 18px;");
   tx[i].addEventListener("input", OnInput, false);
 }
 
